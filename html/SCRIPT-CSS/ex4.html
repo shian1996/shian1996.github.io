@@ -1,0 +1,185 @@
+<!DOCTYPE html>    
+<html>
+    <head>     <!--網頁資訊包在裡面--> 
+        <meta charset="UTF-8">  <!--設定網頁讀得懂中文--> 
+        <title>shian web</title>
+    </head>
+
+    <body style="height:1500px">
+        <!--4. 定位-->
+        <h1 style="color: rgb(43, 173, 87);">CSS Position</h1>
+        <br>      
+        <h3>固定定位 相對定位以及絕對定位</h3>
+        <h4>2.</h4>
+        <div style="position: fixed; right:10px; width: 20px; height: 20px; background-color: blue;"></div>
+        <div style="width: 120px; height: 120px; background-color: red;"></div>
+        
+        <br><br><br><hr><hr>
+        <h1><b>Code</h1>
+        <ul style="background-color: rgb(249, 255, 158) ;">
+        <h3>固定定位 相對定位以及絕對定位</h3>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">1.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+        <span style="font-size: 20px;"> ="width: 20px; height: 20px; background-color: blue;" </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 20px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+        <span style="font-size: 20px;"> ="width: 120px; height: 120px; background-color: red;" </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">"  #沒有任何設定 =對照組</span>
+        <br>
+        <div style="width: 20px; height: 20px; background-color: blue;"></div>
+        <div style="width: 120px; height: 120px; background-color: red;"></div>
+        <br>
+        <br>    
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">2.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+        <span style="font-size: 20px;"> ="</span>
+        <span style="font-size: 20px; color: red;"> position: fixed; right: 20px;</span>
+        <span style="font-size: 20px;"> width: 20px; height: 20px; background-color: blue;" </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 20px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+        <span style="font-size: 20px;"> ="width: 120px; height: 120px; background-color: red;" </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">"  #position: fixed 固定定位 滑動網頁 藍色方框always固定在一個位置 也可以給top bottom right left讓他固定在網頁上的指定位置</span>
+        <br> <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">3.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+        <span style="font-size: 20px;"> ="</span>
+        <span style="font-size: 20px; color: red;"> position: relative; top: 20px;</span>
+        <span style="font-size: 20px;"> width: 20px; height: 20px; background-color: blue;" </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 20px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+        <span style="font-size: 20px;"> ="width: 120px; height: 120px; background-color: red;" </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">"  #position: relative相對定位 藍色方框相對於原本位置做偏移 如果是top是代表原本位置在我的上方 所以我會下移</span>
+        <br>
+        <div style="position: relative; top: 20px; width: 20px; height: 20px; background-color: blue;"></div>
+        <div style="width: 120px; height: 120px; background-color: red;"></div>
+        <br>
+        <hr>
+        <h3>階層上的定位</h3>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">1.  <</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="padding: 30px; border: 5px solid red;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 60px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="padding: 30px; border: 5px solid red;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 120px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="width: 30px; height: 30px; background-color: blue;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 120px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 60px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 20px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(22, 146, 22);">"  #沒有任何設定 =對照組</span>
+            <br>
+            <div style="padding: 30px; border: 5px solid red;">
+                <div style="padding: 30px; border: 5px solid red;">
+                    <div style="width: 30px; height: 30px; background-color: blue;">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">2.  <</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="padding: 30px; border: 5px solid red;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 60px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="padding: 30px; border: 5px solid red;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 120px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="</span>
+            <span style="font-size: 20px; color: red;"> position: absolute; right: 20px;</span>
+            <span style="font-size: 20px;"> height: 30px; background-color: blue;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 120px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 60px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 20px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(22, 146, 22);">"  #position: absolute:絕對定位 使用方法跟原理都固定定位一樣 只是不會隨著網頁移動 在這就是定位在與網頁的右方距離20px的位置上</span>
+
+            <div style="padding: 30px; border: 5px solid red;">
+                <div style="padding: 30px; border: 5px solid red;">
+                    <div style="position: absolute; right:20px; width: 30px; height: 30px; background-color: blue;">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">3.  <</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="padding: 30px; border: 5px solid red;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 60px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="</span>
+            <span style="font-size: 20px; color: red;"> position: relative;</span>
+            <span style="font-size: 20px;"> padding: 30px; border: 5px solid red;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 120px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+            <span style="font-size: 20px;"> ="</span>
+            <span style="font-size: 20px;"> position: absolute; right: 20px;</span>
+            <span style="font-size: 20px;"> height: 30px; background-color: blue;" </span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 120px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 60px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ; padding-left: 20px;"><</span>
+            <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+            <br>
+            <span style="color: rgb(22, 146, 22);">"  #絕對定位的話 如果外層也有做定位 那絕對定位就會定位在外層的定位上 在這就是定位在與外層的右方距離20px的位置上 如果有很多外層都有定位的話 那就依照最近的外層來做定位</span>
+            <br>
+            <div style="padding: 30px; border: 5px solid red;">
+                <div style="position: relative; padding: 30px; border: 5px solid red;">
+                    <div style="position: absolute; right: 20px; width: 30px; height: 30px; background-color: blue;">
+                    </div>
+                </div>
+            </div>
+        <br>
+        <br>
+        <a href="../index.html">home</a>
+        <br><br><br>
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>    
+<html>
+    <h1><b>Code</h1>
+        <ul style="background-color: rgb(249, 255, 158) ;">
+        <h3>****************************</h3>
+        <br>
+        <span style="color: rgb(22, 146, 22);">  #link 外部css file要在head中間做</span>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">1.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">head> </span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; margin-left: 60px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">link rel</span>
+        <span style="color: black; font-size: 20px ;">="stylesheet"</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">href</span>
+        <span style="color: black; font-size: 20px ;">="./style.css"</span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;margin-left: 20px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/head> </span>
+        <br><br><hr>
+        <span style="color: black; font-size: 20px ;">style.css 的內容如下 (如果看懂後可以參考ex6來熟悉)</span>
+        <br>
+        <span style="color: orange; font-size: 20px ;">.food{</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">color:</span>
+        <span style="color: black; font-size: 20px ;">red;</span>
+        <span style="color: orange; font-size: 20px ;">}</span>
+        <br>
+        <span style="color: orange; font-size: 20px ;">.people{</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">color:</span>
+        <span style="color: black; font-size: 20px ;">black;</span>
+        <span style="color: orange; font-size: 20px ;">}</span>
+        <br>
+        <span style="color: orange; font-size: 20px ;">.mjt{</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">background-color:</span>
+        <span style="color: black; font-size: 20px ;">green;</span>
+        <span style="color: orange; font-size: 20px ;">}</span>
+        <br>
+        <span style="color: orange; font-size: 20px ;">.mzt{</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">background-color:</span>
+        <span style="color: black; font-size: 20px ;">gray;</span>
+        <span style="color: orange; font-size: 20px ;">}</span>
+        <br>
+        <span style="color: orange; font-size: 20px ;">.kmt{</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">background-color:</span>
+        <span style="color: black; font-size: 20px ;">blue;</span>
+        <span style="color: orange; font-size: 20px ;">}</span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">  #在.css file中給予class的設定用.加上標籤名稱,並在大括號中填入style的變數</span>
+        <span style="color: rgb(22, 146, 22);">  #也就是說在body中有用到class="標籤名",就可以共用同個style設定</span>
+        <br>
+        <span style="color: orange; font-size: 20px ;">#css-h1{</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">background-color:</span>
+        <span style="color: black; font-size: 20px ;">gray;</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">color:</span>
+        <span style="color: black; font-size: 20px ;">yellow;</span>
+        <span style="color: orange; font-size: 20px ;">}</span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">  #在.css file中給予id的設定用#加上標籤名稱,並在大括號中填入style的變數</span>
+        <span style="color: rgb(22, 146, 22);">  #跟class不同,不可多個標籤共用</span>
+        <br><hr>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">2.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">p id </span>
+        <span style="color: black; font-size: 20px ;">="css-h1"</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+        <span style="color: black; font-size: 20px ;">hello</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/p></span>
+        <br>
+        <p id="css-h1">hello</p>
+        <span style="color: rgb(22, 146, 22);">  #在這邊p標籤吃了id的css-h1標籤因此style為背景灰色字體黃色</span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">3.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">p class </span>
+        <span style="color: black; font-size: 20px ;">="food"</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+        <span style="color: black; font-size: 20px ;">hello</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/p></span>
+        <br>
+        <p class="food">hello</p>
+        <span style="color: rgb(22, 146, 22);">  #在這邊p標籤吃了class的food標籤因此style為字體紅色</span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">4.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">p class </span>
+        <span style="color: black; font-size: 20px ;">="kmt"</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+        <span style="color: black; font-size: 20px ;">hello</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/p></span>
+        <br>
+        <p class="kmt">hello</p>
+        <span style="color: rgb(22, 146, 22);">  #在這邊p標籤吃了class的kmt標籤因此style為背景藍色</span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">5.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">p</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+        <span style="color: black; font-size: 20px ;">hello</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/p></span>
+        <p>hello</p>
+        <span style="color: rgb(22, 146, 22);">  #在這邊p標籤沒有被分類 因此為預設</span>
+        <br><br><br>
+        <a href="../index.html">home</a>
+        <br><br><br>
+    </body>
+</html>

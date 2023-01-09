@@ -1,0 +1,119 @@
+<!DOCTYPE html>    
+<html>
+    <body>
+        <!--5. html 的容器 div & span(美化排版方便使用)-->
+        <!--style="color: red;" 用容器的話 css指令只需下一次在div旁邊-->
+        
+
+        <!--span(字多少 占多少行) div(不管字多少 就是占用一整行)標籤的差異-->
+
+        <hr>
+
+        <br>
+        
+        <!--display可以控制顯示方式, 所以我將span 的display style改為block 那他就會占整行-->
+
+        <br><br><hr><hr>
+        <h1><b>Code</h1>
+        <ul style="background-color: rgb(249, 255, 158) ;">
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">1.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div style </span>
+        <span style="font-size: 20px;"> ="color: red;"> </span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;margin-left: 50px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">ol type </span>
+        <span style="font-size: 20px;"> ="A" </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; margin-left: 100px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">li style> </span>
+        <span style="font-size: 20px;"> ="color: black;">google <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/li></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; margin-left: 100px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">li> </span>
+        <span style="font-size: 20px;"> yhaoo <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/li></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; margin-left: 100px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">li> </span>
+        <span style="font-size: 20px;"> instagram <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/li></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; margin-left: 100px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">li></span>
+        <span style="font-size: 20px;">google><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/li></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;margin-left: 50px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/ol></span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;margin-left: 20px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div></span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">"  # div有點類似打包的概念, 透過設定div的style等等 將所有設定套用在階層以下的內容, 但如果階層以下有設定 以自己的設定為主"</span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">"  # 方便在寫很多行程式時， 不用一個階層一個一個設定"</span>
+        <br><br>
+        <div style="color: red;">
+            <ol type="A">
+                <li style="color: black;">google</li>
+                <li>instgram</li>
+                <li>facebook</li>
+                <li>google</li>
+            </ol>
+        </div>
+        <br><br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">2.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">span> </span>
+        <span style="font-size: 20px;"> link1 </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/span> </span>
+        <span style="color: rgb(22, 146, 22);">"  # span(字多少 占多少行) like as a"</span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">3.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">span> </span>
+        <span style="font-size: 20px;"> link2 </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/span> </span>
+        <br><br>
+        <span>link1</span>
+        <span>link2</span>
+        <br><br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">4.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div> </span>
+        <span style="font-size: 20px;"> link1 </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div> </span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">5.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">div> </span>
+        <span style="font-size: 20px;"> link2 </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/div> </span>
+        <span style="color: rgb(22, 146, 22);">"  # div(不管字多少 就是占用一整行) like as p"</span>
+        <br><br>
+        <div>link1</div>
+        <div>link2</div>
+        <br><br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">6.  <</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">span style> </span>
+        <span style="font-size: 20px;"> ="display: block;">link1 </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/span> </span>
+        <br>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ; margin-left: 20px;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">span > </span>
+        <span style="font-size: 20px;"> link2 </span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;"><</span>
+        <span style="color: rgb(0, 87, 201); font-size: 20px ;">/span> </span>
+        <br>
+        <span style="color: rgb(22, 146, 22);">"  # display可以控制顯示方式, 所以將span 的display style改為block 那他就會占整行"</span>
+        <br><br>
+        <span style="display: block;">link1</span>
+        <span >link2</span>
+        <br><br>
+    
+        <a href="../index.html">home</a>
+    </body>
+</html>
