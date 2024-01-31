@@ -1,57 +1,210 @@
-<!DOCTYPE html>    
 <HTML>
-    <head>     <!--網頁資訊包在裡面--> 
-        <meta charset="UTF-8">  <!--設定網頁讀得懂中文--> 
-        <title>shian web</title>
-    </head>
+<HEAD>
+<TITLE>Global TCo383-TIMCOM COUPLE MODEL OUTPUT</TITLE>
+</HEAD>
+<BODY BGCOLOR="lightgoldenrodyellow">
 
-    <body>
-        <h1>診斷包裹 (d15=diagnostic 15days)</h1>  
-        <hr>
+<p>
+<font size=+3><b>CWATCo-TIMCOM&nbsp;&nbsp;
+<BR>
+<font size=5><b>initial time:,     Diagnostic:  hrs (days)<br>
 
-        <ul>
-        <TH ALIGN=LEFT><A HREF="./2023080100_op4cpl/index.html">2023080100_d45</a>&nbsp;
-        <TH ALIGN=LEFT><A HREF="./2023090100_op4cpl/index.html">2023090100_d45</a>&nbsp;
-        <TH ALIGN=LEFT><A HREF="./2023100100_op4cpl/index.html">2023100100_d45</a>&nbsp;
-        <TH ALIGN=LEFT><A HREF="./2023110100_op4cpl/index.html">2023110100_d45</a>&nbsp;
-        <br>
-        <h1>SST</h1>
-        <hr>
-        <li><a href="./SST/Penghu_SST_isotherm.gif">Penghu_SST monitor</a></li> <li><a href="./SST/Taiwan_SST_isotherm.gif">Around Taiwan_SST &Current</a></li>
-        <h4>/Cold Surge: init 2016011200</h4>
-        <TH ALIGN=LEFT><a href="./CS_2016_plot/20160112/Penghu_SST_isotherm.gif">Penghu_SST monitor, </a>&nbsp; 
-        <TH ALIGN=LEFT><a href="./CS_2016_plot/20160112/Taiwan_SST_isotherm.gif">Around Taiwan_SST &Current</a>&nbsp;
-        <h4>/Cold Surge: init 2016011400</h4>
-        <TH ALIGN=LEFT><a href="./CS_2016_plot/20160114/Penghu_SST_isotherm.gif">Penghu_SST monitor, </a>&nbsp;
-        <TH ALIGN=LEFT><a href="./CS_2016_plot/20160114/Taiwan_SST_isotherm.gif">Around Taiwan_SST &Current</a>&nbsp;
-        <h4>/Cold Surge: init 2016012000</h4>
-        <TH ALIGN=LEFT><a href="./CS_2016_plot/20160120/Penghu_SST_isotherm.gif">Penghu_SST monitor, </a>&nbsp;
-        <TH ALIGN=LEFT><a href="./CS_2016_plot/20160120/Taiwan_SST_isotherm.gif">Around Taiwan_SST &Current</a>&nbsp;
-        <br>
-        <h1>T2m</h1>
-        <hr>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/taipei_t2m.png">Taipei_t2m_forecast</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/YC_t2m.png">YulinChiayi_t2m_forecast   </a>&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/kaohsiung_t2m.png">Kaohsiung_t2m_forecast   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/pindong_t2m.png">Pindong_t2m_forecast   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/Hualien_t2m.png">hualien_t2m_forecast   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <br>
-        <img src="./taipei.png" height="200">
-        <img src="./YC.png" height="200">
-        <img src="./kaohsiung.png" height="200">
-        <img src="./PD.png" height="200">
-        <img src="./HL.png" height="200">
-        <br>
-        <h2>T2m 2D animation map</h2>
-        <TH ALIGN=LEFT><a href="./T2M/Taiwan_T2m_isotherm.gif" >Full domain T2m 10C isotherm</a>&nbsp;
-        <TH ALIGN=LEFT><a href="./T2M/nTaiwan_T2m_isotherm.gif">Taiwan T2m 10C isotherm</a>&nbsp;
-        <h1>MJO</h1>  
-        <hr>
-        <li><a href="./MJO/index.html">MJO phase prediction</a></li> <li><a href="./MJO/rmm_ts.png">MJO RMM index</a></li>
-        <br>
-        <a href="https://docs.google.com/spreadsheets/d/1C5jLrRhl7sXYXPloP3oU8Y-MtK_eNc6VZorvQPvsjVE/edit#gid=0">GEPSv3 RECORD</a>
-        </ul>
+<hr noshade size=2 size="90%">
+<p>
 
-    </body>
-</html>
+<TH ALIGN=LEFT><font size=+2 color=green>TIMCOM global 1D Fields</font><br>
+<TR>
+</TABLE>
+  <TH ALIGN=LEFT><font size=+1 color=darkred> RMSE </font>
+<BR>
+  <TH ALIGN=LEFT><font size=4>Depth & Latitude : &nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_TS_hycom_RMSE_3r.png>TS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_UV_hycom_RMSE_3r.png>UV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_SSH_hycom_RMSE_3r.png>SSH</a>&nbsp;
+<BR><BR>
+  <TH ALIGN=LEFT><font size=+1 color=darkred> Pattern Correlation </font>
+<BR>
+  <TH ALIGN=LEFT><font size=4>Depth & Latitude : &nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_TS_hycom_Pcorr_3r.png>TS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_UV_hycom_Pcorr_3r.png>UV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_SSH_hycom_Pcorr_3r.png>SSH</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_Vector_hycom_Pcorr_3r.png>Vector</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>4 area (PCT, KE, NA, GS) : &nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_TS_hycom_Pcorr_4CEAG.png>TS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_UV_hycom_Pcorr_4CEAG.png>UV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_1d_SSH_hycom_Pcorr_4CEAG.png>SSH</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=4area_map.png>show 4 area map</a>&nbsp;	  
+<BR>
+<TR>
+<TABLE>
+<BR><BR>
+<TH ALIGN=LEFT><font size=+2 color=green>TIMCOM global 2D Fields</font><br>
+<TR>
+</TABLE>
+<TH ALIGN=LEFT><font size=+1 color=darkred> mean( hrs) </font>
 
+<BR>
+  <TH ALIGN=LEFT><font size=4><A HREF=glb_2d_SST_hycom_allmean.png>SST</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_2d_SSS_hycom_allmean.png>SSS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_2d_SSH_hycom_allmean.png>SSH</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_2d_SSUV_hycom_allmean.png>SSUV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_2d_EKE_hycom_allmean.png>EKE</a>&nbsp;
+<BR>
+<BR>
+  <TH ALIGN=LEFT><font size=+1 color=darkred> RMSE </font>
+<BR>
+  <TH ALIGN=LEFT><A HREF=glb_2d_SST_hycom_RMSE.png>SST</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=glb_2d_SSS_hycom_RMSE.png>SSS</a>&nbsp;
+
+<BR>
+<BR>
+  <TH ALIGN=LEFT><font size=+1 color=darkred> At depth </font>
+<BR>
+  <TH ALIGN=LEFT>Water Temperature: &nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_0m.png>0m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_50m.png>50m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_100m.png>100m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_200m.png>200m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_500m.png>500m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_1000m.png>1000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_2000m.png>2000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_3000m.png>3000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_t_at_4000m.png>4000m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>Salinity: &nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_0m.png>0m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_50m.png>50m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_100m.png>100m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_200m.png>200m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_500m.png>500m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_1000m.png>1000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_2000m.png>2000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_3000m.png>3000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_s_at_4000m.png>4000m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>U-Current: &nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_0m.png>0m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_50m.png>50m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_100m.png>100m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_200m.png>200m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_500m.png>500m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_1000m.png>1000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_2000m.png>2000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_3000m.png>3000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_u_at_4000m.png>4000m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>V-Current: &nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_0m.png>0m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_50m.png>50m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_100m.png>100m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_200m.png>200m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_500m.png>500m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_1000m.png>1000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_2000m.png>2000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_3000m.png>3000m</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=2d_mean_v_at_4000m.png>4000m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>depth_lat (EQ): &nbsp;
+  <TH ALIGN=LEFT><A HREF=GlbT_h_lon.png>Water Temperature</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=GlbS_h_lon.png>Salinity</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=GlbU_h_lon.png>U-Current</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=GlbV_h_lon.png>V-Current</a>&nbsp;
+
+<BR>
+  <TH ALIGN=LEFT>depth_lon (zonal avg.): &nbsp;
+  <TH ALIGN=LEFT><A HREF=GlbT_h_lat.png>Water Temperature</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=GlbS_h_lat.png>Salinity</a>&nbsp;
+<TR>
+<TABLE>
+<BR><BR>
+<TH ALIGN=LEFT><font size=+2 color=green>TIMCOM regional 1D Fields</font><br>
+<TR>
+</TABLE>
+  <TH ALIGN=LEFT><font size=+1 color=darkred> RMSE </font>
+<BR>
+  <TH ALIGN=LEFT><font size=4>Depth: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_1d_UV_hycom_RMSE.png>UV</a>&nbsp;
+<BR><BR>
+<TH ALIGN=LEFT><font size=+2 color=green>TIMCOM regional 2D Fields</font><br>
+<TR>
+</TABLE>
+  <TH ALIGN=LEFT><font size=+1 color=darkred> mean </font>
+<BR>
+  <TH ALIGN=LEFT><font size=4>predict to 5days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SST_hycom_5m.png>SST</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSS_hycom_5m.png>SSS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSUV_hycom_5m.png>SSUV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSH_hycom_5m.png>SSH</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT><font size=4>predict to 7days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SST_hycom_7m.png>SST</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSS_hycom_7m.png>SSS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSUV_hycom_7m.png>SSUV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSH_hycom_7m.png>SSH</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT><font size=4>predict to 15days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SST_hycom_15m.png>SST</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSS_hycom_15m.png>SSS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSUV_hycom_15m.png>SSUV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSH_hycom_15m.png>SSH</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT><font size=4>predict to 30days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SST_hycom_30m.png>SST</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSS_hycom_30m.png>SSS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSUV_hycom_30m.png>SSUV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSH_hycom_30m.png>SSH</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT><font size=4>predict to 45days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SST_hycom_45m.png>SST</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSS_hycom_45m.png>SSS</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSUV_hycom_45m.png>SSUV</a>&nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_SSH_hycom_45m.png>SSH</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT><font size=+1 color=darkred> At depth </font>
+<BR>
+  <TH ALIGN=LEFT>depth_lon predict to 5days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_UV_hycom_22_25N5m.png>22-25N</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>depth_lon predict to 7days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_UV_hycom_22_25N7m.png>22-25N</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>depth_lon predict to 15days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_UV_hycom_22_25N15m.png>22-25N</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>depth_lon predict to 30days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_UV_hycom_22_25N30m.png>22-25N</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>depth_lon predict to 45days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_UV_hycom_22_25N.png>22-25N</a>&nbsp;
+<TR>
+<TR>
+<TABLE>
+<BR><BR>
+<TR>
+</TABLE>  
+<TH ALIGN=LEFT><font size=+2 color=green>RSM </font><br>
+<TH ALIGN=LEFT><font size=+1 color=darkred> RSME and sum(bias) </font>
+<BR>
+<TH ALIGN=LEFT><A HREF=reg_1d_T2m_obs_RMSE_sumBias_3r.png>t2m</a>&nbsp;
+<BR>
+<TH ALIGN=LEFT><font size=+1 color=darkred> mean </font>
+<BR>
+  <TH ALIGN=LEFT>predict to 5days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_T2m_obs_5m.png>t2m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>predict to 7days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_T2m_obs_7m.png>t2m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>predict to 15days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_T2m_obs_15m.png>t2m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>predict to 30days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_T2m_obs_30m.png>t2m</a>&nbsp;
+<BR>
+  <TH ALIGN=LEFT>predict to 45days: &nbsp;
+  <TH ALIGN=LEFT><A HREF=reg_2d_T2m_obs_45m.png>t2m</a>&nbsp;
+
+
+<TR>
+<TABLE>
