@@ -1,8 +1,13 @@
-echo "Enter date: "
-read date
-echo "Enter git commit: "
-read gitcommit
+#echo "Enter date: "
+#read date
+#echo "Enter git commit: "
+#read gitcommit
 
+  dtg=`date -d "0 days" +%Y%m%d`00
+  yy=`echo ${dtg} | cut -c 1-4`
+  mm=`echo ${dtg} | cut -c 5-6`
+  dd=`echo ${dtg} | cut -c 7-8`
+  date="${yy}-${mm}-${dd}"
 
 cd /home/shian/web/shian1996.github.io/Prep/
 cp north.html_test north.html
@@ -12,5 +17,5 @@ sed -i 's/aaaa-aa-aa/'${date}'/g' south.html
 
 cd /home/shian/web/shian1996.github.io
 git add SST/* T2M/* MJO/* Prep/* MLD/* SBT/* index.html git.ksh
-git commit -m ${gitcommit}
+git commit -m ${date}
 git push
