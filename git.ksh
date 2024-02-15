@@ -1,7 +1,16 @@
-for i in 08 09
-do
- for j in {01..31}
- do
- git rm -r 2023${i}${j}00_syc
- done
-done
+echo "Enter date: "
+read date
+echo "Enter git commit: "
+read gitcommit
+
+
+cd /home/shian/web/shian1996.github.io/Prep/
+cp north.html_test north.html
+cp south.html_test south.html
+sed -i 's/aaaa-aa-aa/'${date}'/g' north.html  
+sed -i 's/aaaa-aa-aa/'${date}'/g' south.html
+
+cd /home/shian/web/shian1996.github.io
+git add SST/* T2M/* MJO/* Prep/* MLD/* SBT/* index.html git.ksh
+git commit -m ${gitcommit}
+git push
