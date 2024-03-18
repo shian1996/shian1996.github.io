@@ -1,0 +1,10 @@
+<h3> CWA GEPSv3 </h3>
+<hr>
+<a>Forecast initial time : aaaa-aa-aa</a>
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb_SST.png>Sea Surface Temperature</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb_SSH.png>Sea Surface Height& Current</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb_SSS.png>Sea Surface Salinity</a>&nbsp;
+<br>
+<hr>
+
