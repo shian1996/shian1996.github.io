@@ -11,9 +11,9 @@
   date="${yyyy}-${mm}-${dd}"
   ddat="${yy}${mm}${dd}"
 cd /home/shian/web/shian1996.github.io/plot/
-cp north.html_test north.html
-sed -i 's/aaaa-aa-aa/'${date}'/g' north.html  
-sed -i 's/bbbbbbbb/'${ddat}'/g' north.html
+cp NOR1.html_test NOR1.html
+sed -i 's/aaaa-aa-aa/'${date}'/g' NOR1.html  
+sed -i 's/bbbbbbbb/'${ddat}'/g' NOR1.html
 
 cd /home/shian/web/shian1996.github.io
 git add plot/* index.html git.ksh git.ksh_1

@@ -1,0 +1,20 @@
+<h3> CWA GEPSv3 </h3>
+<hr>
+<a>Forecast initial time : aaaa-aa-aa</a>
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SST.png>Sea Surface Temperature</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSH.png>Sea Surface Height& Current</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSS.png>Sea Surface Salinity</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_200hPa_HGT.png>HGT 200hPa</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_500hPa_HGT.png>HGT 200hPa</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_850hPa_HGT.png>HGT 200hPa</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SLP.png>SLP& 10m Wind</a>&nbsp;
+<br>
+<hr>
+
