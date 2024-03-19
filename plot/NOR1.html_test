@@ -33,16 +33,17 @@
 <br>
 <hr>
 <br>
-<a>Sea Surface Height + Sea Surface Current</a>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000001.png" height="300"/>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000002.png" height="300"/>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000003.png" height="300"/>
+<p class>Sea Surface Height + Sea Surface Current¶</p>
 <br>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000004.png" height="300"/>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000005.png" height="300"/>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000006.png" height="300"/>
-<br>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000007.png" height="300"/>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000008.png" height="300"/>
-<img alt="" src="./bbbbbbbb00_SSH+SSC.000009.png" height="300"/>
+<ul class="col s3 m3 l3 xl3">
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000001.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000002.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000003.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000004.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000005.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000006.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000007.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000008.png"/></li>
+<li><img alt="" src="./bbbbbbbb00_SSH+SSC.000009.png"/></li>
+</ul>
 
