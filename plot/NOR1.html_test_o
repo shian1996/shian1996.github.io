@@ -1,0 +1,51 @@
+<h1> CWA GEPSv3 </h1>
+<hr>
+<a>Forecast initial time : aaaa-aa-aa</a>
+<hr>
+<a>Figure : Daily mean</a>
+<br>
+<hr>
+<br>
+<a>Ocean</a>
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SST.png>Sea Surface Temperature</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSS.png>Sea Surface Salinity</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSH.png>Sea Surface Height</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSC.png>Sea Surface Current</a>&nbsp;
+<br>
+<hr>
+<a>Atmosphere</a>
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_200hPa_HGT.png>200hPa Wind</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_500hPa_HGT.png>500hPa HGT</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_850hPa_HGT.png>850hPa Wind</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_10m_wind.png>10m Wind</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SLP.png>SLP+T2m</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00Prep_SLP.png>SLP+Total Prep.</a>&nbsp;
+<br>
+<br>
+<br>
+<hr>
+<br>
+<b><font size="5">Sea Surface Height(cm) + Sea Surface Current(cm/s)</font></b>
+<br>
+<br>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_0.png" height="600"/>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_1.png" height="600"/>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_2.png" height="600"/>
+<br>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_3.png" height="600"/>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_4.png" height="600"/>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_5.png" height="600"/>
+<br>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_6.png" height="600"/>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_7.png" height="600"/>
+<img alt="" src="./bbbbbbbb00_SSH+SSC_8.png" height="600"/>
