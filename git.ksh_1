@@ -3,7 +3,7 @@
 #echo "Enter git commit: "
 #read gitcommit
 
-  dtg=`date -d "-11 days" +%Y%m%d`00
+  dtg=`date -d "-2 days" +%Y%m%d`00
   yyyy=`echo ${dtg} | cut -c 1-4`
   yy=`echo ${dtg} | cut -c 3-4`
   mm=`echo ${dtg} | cut -c 5-6`
