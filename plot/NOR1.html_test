@@ -5,24 +5,32 @@
 <a>Figure : Daily mean</a>
 <br>
 <a>D-Day | 1-Day | 2-Day</a>
-<br>
 <a>3-Day | 4-Day | 5-Day</a>
-<br>
 <a>6-Day | 7-Day | 8-Day</a>
 <hr>
-        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SST.png>Sea Surface Temperature</a>&nbsp;
 <br>
-        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSH.png>Sea Surface Height& Current</a>&nbsp;
+<a>Ocean</a>
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SST.png>Sea Surface Temperature</a>&nbsp;
 <br>
         <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSS.png>Sea Surface Salinity</a>&nbsp;
 <br>
-        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_200hPa_HGT.png>HGT 200hPa</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSH.png>Sea Surface Height</a>&nbsp;
 <br>
-        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_500hPa_HGT.png>HGT 200hPa</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SSC.png>Sea Surface Current</a>&nbsp;
 <br>
-        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_850hPa_HGT.png>HGT 200hPa</a>&nbsp;
+<hr>
+<a>Atmosphere</a>
 <br>
-        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SLP.png>SLP& 10m Wind</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_200hPa_HGT.png>200hPa Wind</a>&nbsp;
 <br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_500hPa_HGT.png>500hPa HGT</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_850hPa_HGT.png>850hPa Wind</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_SLP.png>SLP</a>&nbsp;
+<br>
+        <TH ALIGN=LEFT><A HREF=./bbbbbbbb00_10m_wind.png>10m Wind</a>&nbsp;
+
 <hr>
 
