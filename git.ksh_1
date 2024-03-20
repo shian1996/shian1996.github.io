@@ -3,7 +3,7 @@
 #echo "Enter git commit: "
 #read gitcommit
 
-  dtg=`date -d "-2 days" +%Y%m%d`00
+  dtg=`date -d "-19 days" +%Y%m%d`00
   yyyy=`echo ${dtg} | cut -c 1-4`
   yy=`echo ${dtg} | cut -c 3-4`
   mm=`echo ${dtg} | cut -c 5-6`
@@ -11,9 +11,13 @@
   date="${yyyy}-${mm}-${dd}"
   ddat="${yy}${mm}${dd}"
 cd /home/shian/web/shian1996.github.io/plot/
-cp NOR1.html_test NOR1.html
-sed -i 's/aaaa-aa-aa/'${date}'/g' NOR1.html  
-sed -i 's/bbbbbbbb/'${ddat}'/g' NOR1.html
+cp NOR1.html_test NOR1-${date}.html
+sed -i 's/aaaa-aa-aa/'${date}'/g' NOR1-${date}.html  
+sed -i 's/bbbbbbbb/'${ddat}'/g' NOR1-${date}.html
+sed -i 's/cccc-cc-cc/'${date}'/g' index.html
+path=/home/shian/web/shian1996.github.io/plot/ #index.html_test
+echo '<li><a href="./plot/NOR1-cccc-cc-cc.html">initial time: cccc-cc-cc </a></li>' >> ${path}index.html
+
 
 cd /home/shian/web/shian1996.github.io
 git add plot/* index.html git.ksh git.ksh_1
