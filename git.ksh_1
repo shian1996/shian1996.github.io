@@ -14,9 +14,9 @@ cd /home/shian/web/shian1996.github.io/plot/
 cp NOR1.html_test NOR1-${date}.html
 sed -i 's/aaaa-aa-aa/'${date}'/g' NOR1-${date}.html  
 sed -i 's/bbbbbbbb/'${ddat}'/g' NOR1-${date}.html
-sed -i 's/cccc-cc-cc/'${date}'/g' index.html
+sed -i 's/cccc-cc-cc/'${date}'/g' NOR1_2024_0069.html
 path=/home/shian/web/shian1996.github.io/plot/ #index.html_test
-echo '<li><a href="./NOR1-cccc-cc-cc.html">initial time: cccc-cc-cc </a></li>' >> ${path}index.html
+echo '<li><a href="./NOR1-cccc-cc-cc.html">initial time: cccc-cc-cc </a></li>' >> ${path}NOR1_2024_0069.html
 
 
 cd /home/shian/web/shian1996.github.io
