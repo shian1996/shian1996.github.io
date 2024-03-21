@@ -20,6 +20,6 @@ echo '<li><a href="./NOR1-cccc-cc-cc.html">initial time: cccc-cc-cc </a></li>' >
 
 
 cd /home/shian/web/shian1996.github.io
-git add plot/* index.html git.ksh git.ksh_1
+git add plot/* check_ic.txt index.html git.ksh git.ksh_1
 git commit -m ${date}
 git push
