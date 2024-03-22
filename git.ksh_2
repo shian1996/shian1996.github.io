@@ -14,7 +14,7 @@
   yy2=`echo ${dtg2} | cut -c 1-4`
   mm2=`echo ${dtg2} | cut -c 5-6`
   dd2=`echo ${dtg2} | cut -c 7-8`
-  date2="${yy}-${mm}-${dd}"
+  date2="${yy2}-${mm2}-${dd2}"
 
 cd /home/shian/web/shian1996.github.io/Prep/
 cp north.html_test north.html
