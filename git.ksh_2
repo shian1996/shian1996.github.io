@@ -9,11 +9,22 @@
   dd=`echo ${dtg} | cut -c 7-8`
   date="${yy}-${mm}-${dd}"
 
+
+  dtg2=`date -d "-3 days" +%Y%m%d`00
+  yy2=`echo ${dtg2} | cut -c 1-4`
+  mm2=`echo ${dtg2} | cut -c 5-6`
+  dd2=`echo ${dtg2} | cut -c 7-8`
+  date2="${yy}-${mm}-${dd}"
+
 cd /home/shian/web/shian1996.github.io/Prep/
 cp north.html_test north.html
 cp south.html_test south.html
 sed -i 's/aaaa-aa-aa/'${date}'/g' north.html  
 sed -i 's/aaaa-aa-aa/'${date}'/g' south.html
+
+cd /home/shian/web/shian1996.github.io/MJO/
+cp index.html_ index.html
+sed -i 's/aaaaaaaa/'${date2}'/g' index.html
 
 cd /home/shian/web/shian1996.github.io
 git add SST/* T2M/* MJO/* Prep/* MLD/* SBT/* check_ic.txt index.html git.ksh git.ksh_1 git.ksh_2
