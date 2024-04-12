@@ -50,6 +50,6 @@ sed -i 's/cccc-cc-cc/'${date3}'/g' index.html
 sed -i 's/dddd-dd-dd/'${date4}'/g' index.html
 sed -i 's/eeee-ee-ee/'${date5}'/g' index.html
 
-git add SST/* T2M/* MJO/* Prep/* MLD/* SBT/* check_ic.txt index.html git.ksh git.ksh_1 git.ksh_2
+git add SST/* T2M/* MJO/* Prep/* MLD/* SBT/* check_ic.txt index.html git.ksh git.ksh_1 git.ksh_2 PAS/*
 git commit -m ${date}
 git push
