@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A - ABC Learning</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Grid layout */
+        #wordList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 自適應列數，最小寬度 200px */
+            grid-gap: 20px; /* 單字間距 */
+        }
+
+        .word {
+            padding: 20px; /* 單字內邊距 */
+            border: 1px solid #ccc; /* 單字邊框 */
+            border-radius: 5px; /* 圓角邊框 */
+        }
+
+        .ipa {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .audio-icon {
+            width: 36px;
+            height: 36px;
+            background: url('audio_icon.png') no-repeat center center;
+            background-size: contain;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 600px) {
+            #wordList {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 在較小螢幕上調整列數和最小寬度 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Letter A</h1>
+    </header>
+    <main id="wordList">
+        <!-- Word list will be dynamically generated here -->
+    </main>
+
+    <script>
+        var words = [
+            { word: "Apple", partOfSpeech: "名詞", translation: "蘋果", example: "I love eating apples.", audio: "apple.mp3", ipa: "/ˈæpəl/" },
+            { word: "Ant", partOfSpeech: "名詞", translation: "螞蟻", example: "There are many ants in the garden.", audio: "ant.mp3", ipa: "/ˈænt/" },
+            { word: "Arrow", partOfSpeech: "名詞", translation: "箭頭", example: "The arrow hit the target.", audio: "arrow.mp3", ipa: "/ˈæroʊ/" },
+            { word: "Airplane", partOfSpeech: "名詞", translation: "飛機", example: "I saw an airplane flying in the sky.", audio: "airplane.mp3", ipa: "/ˈɛərpleɪn/" },
+            { word: "Animal", partOfSpeech: "名詞", translation: "動物", example: "The zoo has many different animals.", audio: "animal.mp3", ipa: "/ˈænəməl/" },
+            { word: "Adventure", partOfSpeech: "名詞", translation: "冒險", example: "Going on a hike can be an adventure.", audio: "adventure.mp3", ipa: "/ədˈvɛn.tʃɚ/" },
+            // New words
+            { word: "Apartment", partOfSpeech: "名詞", translation: "公寓", example: "He lives in a small apartment.", audio: "apartment.mp3", ipa: "/əˈpɑːrtmənt/" },
+            { word: "April", partOfSpeech: "名詞", translation: "四月", example: "My birthday is in April.", audio: "april.mp3", ipa: "/ˈeɪ.prəl/" },
+            { word: "Artist", partOfSpeech: "名詞", translation: "藝術家", example: "She's a famous artist.", audio: "artist.mp3", ipa: "/ˈɑːr.t̬ɪst/" },
+            { word: "Asia", partOfSpeech: "名詞", translation: "亞洲", example: "China is in Asia.", audio: "asia.mp3", ipa: "/ˈeɪ.ʒə/" },
+            { word: "Australia", partOfSpeech: "名詞", translation: "澳洲", example: "Kangaroos are native to Australia.", audio: "australia.mp3", ipa: "/ɒˈstreɪl.jə/" },
+            { word: "Average", partOfSpeech: "形容詞", translation: "平均", example: "The average temperature in summer is 25 degrees Celsius.", audio: "average.mp3", ipa: "/ˈæv.ər.ɪdʒ/" }
+            // Add more words here if needed
+        ];
+
+        var wordListElement = document.getElementById("wordList");
+
+        words.forEach(function(word, index) {
+            var wordDiv = document.createElement("div");
+            wordDiv.className = "word";
+
+            var wordHTML = `
+                <h2>${index + 1}. ${word.word}</h2>
+                <p>KK音標：${word.ipa}</p>
+                <p>${word.partOfSpeech} - ${word.translation}</p>
+                <p>例句：${word.example}</p>
+                <div class="audio-icon" onclick="playAudio('${word.audio}')"></div>
+            `;
+            wordDiv.innerHTML = wordHTML;
+            wordListElement.appendChild(wordDiv);
+        });
+
+        function playAudio(audioSrc) {
+            var audio = new Audio(audioSrc);
+            audio.play();
+        }
+    </script>
+</body>
+</html>
