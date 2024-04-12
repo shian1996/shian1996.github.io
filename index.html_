@@ -1,0 +1,101 @@
+<meta charset="UTF-8">
+<!DOCTYPE html>    
+<HTML>
+    <head>     <!--網頁資訊包在裡面--> 
+        <meta charset="UTF-8">  <!--設定網頁讀得懂中文--> 
+        <title>shian web</title>
+    </head>
+
+    <body>
+        <h1>diagnostic</h1>
+        <hr>
+        <TH ALIGN=LEFT><A HREF="./2023080100_op4cpl/index.html">2023080100_d45 </a>&nbsp;&nbsp;&nbsp;
+        <TH ALIGN=LEFT><A HREF="./2023090100_op4cpl/index.html">2023090100_d45 </a>&nbsp;&nbsp;&nbsp;
+        <TH ALIGN=LEFT><A HREF="./2023100100_op4cpl/index.html">2023100100_d45 </a>&nbsp;&nbsp;&nbsp;
+        <TH ALIGN=LEFT><A HREF="./2023110100_op4cpl/index.html">2023110100_d45 </a>&nbsp;&nbsp;&nbsp;
+        <br>
+        <TH ALIGN=LEFT><A HREF="./CS_2016_plot/index.html">Cold Surge (2016)</a>&nbsp;&nbsp;&nbsp;
+        <br>
+        <h2>Comp. with HYCOM</h2>
+        <li><a href="./SST/Taiwan_SST_p5isotherm.gif">Model Lead 5 : initial time=cccc-cc-cc</a></li>
+        <li><a href="./SST/Taiwan_SST_p10isotherm.gif">Model Lead 10 : initial time=dddd-dd-dd</a></li>
+        <li><a href="./SST/Taiwan_SST_p15isotherm.gif">Model Lead 15 : initial time=eeee-ee-ee</a></li>
+        <br>
+        <h1>Ocean</h1>
+        <hr>
+        <li><a href="./plot/NOR1_2024_0069.html">NOR1 Kaohisung-Palau-Kaohsiung cruise</a></li>
+        <hr>
+        <li><a href="./SST/penghu_sst.png">SST Compared with Penghu buoy</a></li>
+        <li><a href="./SST/Penghu_SST_isotherm.gif">Penghu_SST monitor</a></li>
+        <li><a href="./SST/Taiwan_SST_isotherm.gif">Around Taiwan_SST &Current</a></li>
+        <hr>
+        <li><a> Sea Surface Temperature </a></li>
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f024.png>00</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f030.png>06</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f036.png>12</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f042.png>18</a>&nbsp;
+        <TH ALIGN=LEFT><a>next day</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f048.png>00</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f054.png>06</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f060.png>12</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SST/SST_f066.png>18</a>&nbsp;
+        <hr>
+        <li><a> Mixing Layer Depth </a></li>
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f024.png>00</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f030.png>06</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f036.png>12</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f042.png>18</a>&nbsp;
+        <TH ALIGN=LEFT><a>next day</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f048.png>00</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f054.png>06</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f060.png>12</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./MLD/MLD_f066.png>18</a>&nbsp;
+        <hr>
+        <li><a> Bottom water temperature </a></li> 
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f024.png>00</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f030.png>06</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f036.png>12</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f042.png>18</a>&nbsp;
+        <TH ALIGN=LEFT><a>next day</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f048.png>00</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f054.png>06</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f060.png>12</a>&nbsp;
+        <TH ALIGN=LEFT><A HREF=./SBT/SBT_f066.png>18</a>&nbsp;
+        <br>
+        <h1>T2m (日均溫預�)�</h1> 
+        <br>
+        <hr>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/taipei_t2m.png">Taipei_t2m_forecast</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/YC_t2m.png">YulinChiayi_t2m_forecast   </a>&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/kaohsiung_t2m.png">Kaohsiung_t2m_forecast   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>
+        <img src="./taipei.png" height="200" style="float: left;" > 
+        <img src="./YC.png" height="200">
+        <img src="./kaohsiung.png" height="200">        
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/pindong_t2m.png">Pindong_t2m_forecast   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TH ALIGN=LEFT><A HREF="./T2M/hualien_t2m.png">hualien_t2m_forecast   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>
+        <img src="./PD.png" height="200">
+        <img src="./HL.png" height="200">
+        <br>
+        <h2>T2m 2D animation map (日均溫預報-空間動畫顯示)</h2>
+        <TH ALIGN=LEFT><a href="./T2M/Taiwan_T2m_isotherm.gif" >Full domain T2m 10C isotherm</a>&nbsp;
+        <TH ALIGN=LEFT><a href="./T2M/nTaiwan_T2m_isotherm.gif">Taiwan T2m 10C isotherm</a>&nbsp;
+        <h1>Accumulated Precipitation (累積降水預報)</h1>
+        <TH ALIGN=LEFT><A HREF="./Prep/north.html">North of Yilan</a>&nbsp;&nbsp;&nbsp;
+        <TH ALIGN=LEFT><A HREF="./Prep/south.html">South of Yilan</a>&nbsp;&nbsp;&nbsp;
+        <h1>MJO</h1>  
+        <hr>
+        <li><a href="./MJO/index.html">MJO phase prediction</a></li> <li><a href="./MJO/rmm_ts.png">MJO RMM index</a></li>
+        <br>
+        <a href="https://docs.google.com/spreadsheets/d/1C5jLrRhl7sXYXPloP3oU8Y-MtK_eNc6VZorvQPvsjVE/edit#gid=0">GEPSv3 RECORD</a>
+        <br>
+	<iframe src="./check_ic.txt"></iframe>
+	<br>
+
+    </body>
+</html>
+
+
+
