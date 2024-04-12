@@ -16,6 +16,24 @@
   dd2=`echo ${dtg2} | cut -c 7-8`
   date2="${yy2}-${mm2}-${dd2}"
 
+  dtg3=`date -d "-5 days" +%Y%m%d`00
+  yy3=`echo ${dtg3} | cut -c 1-4`
+  mm3=`echo ${dtg3} | cut -c 5-6`
+  dd3=`echo ${dtg3} | cut -c 7-8`
+  date3="${yy3}-${mm3}-${dd3}"
+
+  dtg4=`date -d "-10 days" +%Y%m%d`00
+  yy4=`echo ${dtg4} | cut -c 1-4`
+  mm4=`echo ${dtg4} | cut -c 5-6`
+  dd4=`echo ${dtg4} | cut -c 7-8`
+  date4="${yy4}-${mm4}-${dd4}"
+
+  dtg5=`date -d "-15 days" +%Y%m%d`00
+  yy5=`echo ${dtg5} | cut -c 1-4`
+  mm5=`echo ${dtg5} | cut -c 5-6`
+  dd5=`echo ${dtg5} | cut -c 7-8`
+  date5="${yy5}-${mm5}-${dd5}"
+
 cd /home/shian/web/shian1996.github.io/Prep/
 cp north.html_test north.html
 cp south.html_test south.html
@@ -27,6 +45,11 @@ cp index.html_ index.html
 sed -i 's/aaaaaaaa/'${date2}'/g' index.html
 
 cd /home/shian/web/shian1996.github.io
+cp index.html_ index.html
+sed -i 's/cccc-cc-cc/'${date3}'/g' index.html
+sed -i 's/dddd-dd-dd/'${date4}'/g' index.html
+sed -i 's/eeee-ee-ee/'${date5}'/g' index.html
+
 git add SST/* T2M/* MJO/* Prep/* MLD/* SBT/* check_ic.txt index.html git.ksh git.ksh_1 git.ksh_2
 git commit -m ${date}
 git push
