@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 20px 0;
+    background-image: url('logo.png'); /* 設置商標圖像的路徑 */
+    background-size: contain; /* 自動縮放商標以适應區域 */
+    background-repeat: no-repeat; /* 防止商標重複 */
+    background-position: right; /* 將商標置中 */
+    height: 100px; /* 設置商標的高度 */
+}
+
+main {
+    padding: 20px;
+}
+
+#word-list {
+    margin-top: 20px;
+}
+
+#word-list h2 {
+    font-size: 1.5em;
+}
+
+.word {
+    font-weight: bold;
+}
+
+.pronunciation {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
