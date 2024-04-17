@@ -1,1 +1,6 @@
-../GEPSv3/jobs/check_ic.txt
+check ic ok :2024041400
+check ic false :2024041600
+check ic ok :2024041500
+check ic ok :2024041600
+check ic ok :2024041600
+check ic ok :2024041500
