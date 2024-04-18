@@ -5,3 +5,5 @@ check ic ok :2024041600
 check ic ok :2024041600
 check ic ok :2024041500
 check ic ok :2024041700
+check ic ok :2024041500
+check ic ok :2024041800
