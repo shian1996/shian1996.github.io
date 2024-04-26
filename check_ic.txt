@@ -5,3 +5,13 @@ check ic ok :2024042100
 check ic ok :2024042200
 check ic ok :2024042300
 check ic ok :2024042400
+check ic ok :2024042000
+check ic ok :2024042100
+check ic ok :2024042200
+check ic ok :2024042300
+check ic ok :2024041900
+check ic ok :2024042100
+check ic ok :2024042200
+check ic ok :2024042300
+check ic ok :2024042400
+check ic ok :2024042500
