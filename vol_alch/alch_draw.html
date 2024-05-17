@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>酒精濃度抽籤系統</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">酒精濃度抽籤系統</h1>
+    <div class="input-container">
+      <label for="alcoholPercentage">酒精濃度：</label>
+      <input type="number" id="alcoholPercentage" min="0" step="0.1" placeholder="請輸入酒精濃度">
+      <button onclick="startDraw()">開始抽籤</button>
+    </div>
+    <div id="result-container" class="result-container">
+      <!-- 抽籤結果將在此處動態生成 -->
+    </div>
+    <a href="index.html" class="back-button">返回主頁</a>
+  </div>
+
+  <script src="script_alc.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>抽籤系統</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .input-container {
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    input[type="number"] {
+      width: 80px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 0 10px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      margin: 10px;
+      padding: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #ddd;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .card:hover {
+      background-color: #ccc;
+    }
+
+    .result-container {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .result-item {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>抽籤系統</h1>
+    <div class="input-container">
+      <label for="numOfPeople">人數：</label>
+      <input type="number" id="numOfPeople" min="1" placeholder="請輸入人數">
+      <label for="numOfGroups">分組數量：</label>
+      <input type="number" id="numOfGroups" min="1" placeholder="請輸入分組數量">
+      <button onclick="startDraw()">開始抽籤</button>
+    </div>
+    <div id="cards" class="cards">
+      <!-- 卡牌將在此處動態生成 -->
+    </div>
+    <div class="result-container">
+      <h2>抽籤結果</h2>
+      <div id="result" class="result"></div>
+    </div>
+    <a href="index.html" class="back-button">返回主頁</a>
+  </div>
+
+  <script>
+    // 獲取用於顯示抽籤結果的元素
+    var resultElement = document.getElementById("result");
+
+    // 監聽開始抽籤按鈕的點擊事件
+    function startDraw() {
+      var numOfPeople = parseInt(document.getElementById("numOfPeople").value);
+      var numOfGroups = parseInt(document.getElementById("numOfGroups").value);
+
+      if (isNaN(numOfPeople) || isNaN(numOfGroups)) {
+        alert("請輸入有效的人數和分組數量。");
+        return;
+      }
+
+      drawCards(numOfPeople, numOfGroups);
+    }
+
+    // 生成卡牌
+    function drawCards(numOfPeople, numOfGroups) {
+      var cardsContainer = document.getElementById("cards");
+      cardsContainer.innerHTML = ""; // 清空容器
+
+      var availableGroups = ["A", "B", "C", "D"]; // 可用的分組組別
+
+      // 將可用的分組組別複製多份以保證每個人都有對應的組別
+      var groups = [];
+      for (var i = 0; i < numOfGroups; i++) {
+        groups = groups.concat(availableGroups);
+      }
+
+      // 將分組組別洗牌
+      for (var i = groups.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        [groups[i], groups[j]] = [groups[j], groups[i]]; // 交換兩個元素的位置
+      }
+
+      // 為每個按鈕分配一個分組組別
+      for (var i = 1; i <= numOfPeople; i++) {
+        var card = document.createElement("button");
+        card.classList.add("card");
+        card.textContent = "按鈕 " + i;
+        card.addEventListener("click", function() {
+          var group = groups.pop(); // 從分組組別列表中取出一個分組組別
+          drawLot(group);
+          this.textContent = group + "組"; // 將按鈕的文字設置為分組組別
+          this.disabled = true; // 禁用按鈕
+        });
+        cardsContainer.appendChild(card);
+      }
+    }
+
+    // 抽籤函數
+    function drawLot(group) {
+      var resultContainer = document.getElementById("result");
+      var resultItem = document.createElement("div");
+      resultItem.classList.add("result-item");
+      resultItem.textContent = "你被分配到：" + group + "組";
+      resultContainer.appendChild(resultItem);
+    }
+  </script>
+</body>
+</html>
