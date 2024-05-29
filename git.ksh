@@ -10,6 +10,6 @@
   date="${yy}-${mm}-${dd}"
 
 cd /home/shian/web/shian1996.github.io
-git add SST/* MLD/* SBT/* index.html git.ksh git.ksh_2 check_ic.txt
+git add Prep/* SST/* MLD/* SBT/* index.html git.ksh git.ksh_2 check_ic.txt
 git commit -m ${date}
 git push
