@@ -9,6 +9,14 @@
   dd=`echo ${dtg} | cut -c 7-8`
   date="${yy}-${mm}-${dd}"
 
+
+cd /home/shian/web/shian1996.github.io/Prep/
+cp north.html_test north.html
+cp south.html_test south.html
+sed -i 's/aaaa-aa-aa/'${date}'/g' north.html
+sed -i 's/aaaa-aa-aa/'${date}'/g' south.html
+
+
 cd /home/shian/web/shian1996.github.io
 git add Prep/* SST/* MLD/* SBT/* index.html git.ksh git.ksh_2 check_ic.txt
 git commit -m ${date}
