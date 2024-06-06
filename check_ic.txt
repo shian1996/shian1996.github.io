@@ -29,3 +29,4 @@ check ic ok :2024060200
 check ic ok :2024060300
 check ic ok :2024060400
 check ic ok :2024060500
+check ic ok :2024060600
