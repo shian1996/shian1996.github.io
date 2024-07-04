@@ -70,3 +70,6 @@ check ic ok :2024063000
 check ic ok :2024070100
 check ic ok :2024070200
 check ic ok :2024070300
+check ic ok :2008020100
+check ic ok :2024061400
+check ic ok :2024070400
