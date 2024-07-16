@@ -94,7 +94,7 @@ $(document).ready(function(){
         template += '<tr>';
         template += '<th><img src="./{date}/{date}00_rmm_ts.png"       width="400" height="450" ></th>';
         template += '<th><img src="./{date}/{date}00_pv_hd.png"    width="400" height="450" ></th>';  
-        template += '<th><img src="./{date}/{date}00hd.png"    width="400" height="450" ></th>';
+        template += '<th><img src="./{date}/{date}00_hd_olr.png"    width="400" height="450" ></th>';
         template += '</tr>';
 
         template += '</tbody></table>' ; 
