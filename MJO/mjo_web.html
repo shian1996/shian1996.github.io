@@ -1,0 +1,82 @@
+<HTML>
+  <head>
+    <meta charset="utf-8">
+    <title>CWA TCoGFS/RSM Charts</title>
+
+<!--
+    <script src="./js/jquery-1.7.2.min.js" type="text/javascript"></script>  
+    <script src="./js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>  
+-->
+    <link href="./js/jquery-ui-1.13.0/jquery-ui.css" rel="stylesheet" type="text/css" >
+    <script src="./js/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="./js/jquery-ui-1.13.0/jquery-ui.min.js" type="text/javascript"></script>
+
+    <script src="./js/query_dates.js" type="text/javascript"></script>  
+    <script src="./js/cwbens_main.js" type="text/javascript"></script>  
+    <script src="./js/cwbens.js" type="text/javascript"></script>  
+    <style type="text/css">
+      #display_nav  {
+         background-color:#DDDDDD;
+         position:fixed;
+         top:0%;
+         bottom:89%;
+         left:0%;
+         right:0%;
+         z-index:1;
+      }   
+      #mydata {
+         margin-top: 100px;
+      }
+      #date_selector {
+         font-size:130%;
+      }
+      #previous_day {
+         font-size:130%;
+      }
+      #next_day {
+         font-size:130%;
+      }
+      #latest {
+         font-size:130%;
+      }
+      thead {
+       position: sticky;
+       top: 100;
+       background-color: #f2f2f2;
+       z-index:2;
+      }
+       th:first-child { 
+       position:sticky;
+       left:0; /* 首行永遠固定於左 */
+       background-color:lightyellow;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <tbody>
+      <div id=display_nav>
+        <a class="title"><font size=6 >CWA GEPSv3 MJO</a></br>
+        <font size=4 >
+        <td class="time_selectr"><input type="text"   id="date_selector"  size="10"         class="display hasDatepicker"></td>
+        <td class="time_selectr"><input type="button" value="< - 1 Day"   id="previous_day" class="display"></td>
+        <td class="time_selectr"><input type="button" value="+1 Day >"    id="next_day"     class="display"></td>
+        <td class="time_selectr"><input type="button" value="Latest >|"   id="latest"       class="display"></td>
+      </br>
+        <font size=5 >
+        <a>MJO : </a>
+        <input type="radio" name="plevel" value="pra" >All
+        <input type="radio" name="plevel" value="p200" >P200
+        <input type="radio" name="plevel" value="p850" >P850
+        <input type="radio" name="plevel" value="surf" >MSLP
+      </br>
+
+      </div>
+    </tbody>
+    <div id="mydata">
+      <div  class="display_area"></div>
+
+    </div>
+  </body>
+</HTML>

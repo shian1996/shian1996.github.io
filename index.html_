@@ -87,7 +87,9 @@
         <TH ALIGN=LEFT><A HREF="./Prep/south.html">South of Yilan</a>&nbsp;&nbsp;&nbsp;
         <h1>MJO</h1>  
         <hr>
-        <li><a href="./MJO/index.html">MJO phase prediction</a></li> <li><a href="./MJO/rmm_ts.png">MJO RMM index</a></li>
+        <li><a href="./MJO/mjo_web.html">GEPSv3 MJO web</a></li>
+        <li><a href="./MJO/index.html">MJO phase prediction</a></li> 
+        <li><a href="./MJO/rmm_ts.png">MJO RMM index</a></li>
         <br>
         <a href="https://docs.google.com/spreadsheets/d/1C5jLrRhl7sXYXPloP3oU8Y-MtK_eNc6VZorvQPvsjVE/edit#gid=0">GEPSv3 RECORD</a>
         <br>
