@@ -149,7 +149,7 @@ $(document).ready(function(){
        city='TP'
     }
     if ( current_date == '' ) {
-        var today = new Date(new Date().getTime() - 24*60*60*1000) ;
+        var today = new Date(new Date().getTime() - 24*60*60*1000*3) ;
         var yyyy= today.getFullYear();
         var mm  = (today.getMonth() + 1 ) >= 10 ? (today.getMonth()+1).toFixed(0) : ("0" + (today.getMonth()+1));
         var dd  = today.getDate()         <  10 ? ("0" + today.getDate() ) : today.getDate() ;

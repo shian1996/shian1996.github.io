@@ -18,7 +18,7 @@
         var input_date_day = parseInt(input_date.substring(8, 10), 10);    
         var d = new Date(input_date_year, input_date_month-1, input_date_day);
         var newest_date = new Date();
-        var newest_date = newest_date.setDate(newest_date.getDate() - 2);
+        var newest_date = newest_date.setDate(newest_date.getDate() - 4);
 
         return d <= newest_date;
     }
