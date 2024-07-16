@@ -87,12 +87,14 @@ $(document).ready(function(){
         template += '<tr>';
         template += '<th>RMM index bc </br> (update at:10:30/LT)</th>';
         template += '<th>CHI 200 period mean removed </br> (5-Day running mean)</th>';
+        template += '<th>OLR anomaly </br> (5-Day running mean)</th>';
         template += '</tr>';
         template += '</thead>';
         template += '<tbody>';
         template += '<tr>';
         template += '<th><img src="./{date}/{date}00_rmm_ts.png"       width="400" height="450" ></th>';
-        template += '<td><img src="./{date}/{date}00_pv_hd.png"    width="400" height="450" ></th>';  
+        template += '<th><img src="./{date}/{date}00_pv_hd.png"    width="400" height="450" ></th>';  
+        template += '<th><img src="./{date}/{date}00hd.png"    width="400" height="450" ></th>';
         template += '</tr>';
 
         template += '</tbody></table>' ; 
