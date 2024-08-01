@@ -101,3 +101,4 @@ check ic ok :2024072900
 check ic false :2024073000
 check ic ok :2024073000
 check ic false :2024073100
+check ic ok :2024080100
