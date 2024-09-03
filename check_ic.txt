@@ -21,3 +21,4 @@ check ic ok :2024083000
 check ic ok :2024083100
 check ic ok :2024090100
 check ic ok :2024090200
+check ic ok :2024090300
