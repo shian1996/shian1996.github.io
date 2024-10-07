@@ -36,3 +36,4 @@ check ic false :2024092000
 check ic false :2024100300
 check ic false :2024100400
 check ic false :2024100500
+check ic false :2024100600
