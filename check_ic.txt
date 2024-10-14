@@ -47,3 +47,6 @@ check ic ok :2024092612
 check ic false :2024101000
 check ic false :2024101100
 check ic false :2024101200
+check ic false :2024101300
+check ic false :2024092800
+check ic false :2024092800
