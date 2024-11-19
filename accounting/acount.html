@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記帳支出</title>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            width: 150px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            width: 60%;
+        }
+
+        .input-group input,
+        .input-group select {
+            flex: 1;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .input-group input[type="number"] {
+            width: 120px;
+        }
+
+        .input-group input[type="date"] {
+            width: 140px;
+        }
+
+        .button-group {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .input-group input::placeholder {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>記帳支出</h1>
+
+    <!-- 填寫報表資訊 -->
+    <div class="form-group">
+        <label>填寫人姓名 / 申請日期</label>
+        <div class="input-group">
+            <input type="text" id="reporter-name" placeholder="姓名">
+            <input type="date" id="report-date">
+        </div>
+    </div>
+
+    <!-- 出差類型 -->
+    <div class="form-group">
+        <label>出國類型</label>
+        <div class="input-group">
+            <select id="trip-type">
+                <option value="國內旅遊">國內旅遊</option>
+                <option value="國外旅遊">國外旅遊</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 出差日程 -->
+    <div class="form-group">
+        <label>出國日程</label>
+        <div class="input-group">
+            <input type="text" id="trip-dates" placeholder="yyyy/mm/dd-yyyy/mm/dd">
+            <input type="number" id="trip-days" placeholder="總共天數">
+        </div>
+    </div>
+
+    <table id="expense-table">
+        <thead>
+            <tr>
+                <th>日期</th>
+                <th>項目</th>
+                <th>金額</th>
+                <th>備註</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 用戶可以在這裡新增出差紀錄 -->
+        </tbody>
+    </table>
+
+    <div class="button-group">
+        <button id="add-row-btn">新增紀錄</button>
+        <button id="export-btn">導出為 Excel</button>
+    </div>
+
+    <div id="total-container">
+        <strong>總支出：</strong>
+        <span id="total-expense">0</span> 元
+    </div>
+
+    <div id="category-container">
+        <strong>各項目總支出：</strong>
+        <ul id="category-list"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let categoryTotals = {};
+
+            // 新增一筆紀錄
+            document.getElementById("add-row-btn").addEventListener("click", function() {
+                const table = document.getElementById("expense-table").getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow();
+
+                const dateCell = newRow.insertCell(0);
+                const dateInput = document.createElement("input");
+                dateInput.type = "date";
+                dateCell.appendChild(dateInput);
+
+                const itemCell = newRow.insertCell(1);
+                const itemInput = document.createElement("input");
+                itemInput.type = "text";
+                itemInput.placeholder = "請輸入項目";
+                itemCell.appendChild(itemInput);
+
+                const amountCell = newRow.insertCell(2);
+                const amountInput = document.createElement("input");
+                amountInput.type = "number";
+                amountInput.placeholder = "請輸入金額";
+                amountCell.appendChild(amountInput);
+
+                const noteCell = newRow.insertCell(3);
+                const noteInput = document.createElement("input");
+                noteInput.type = "text";
+                noteInput.placeholder = "請輸入備註（人名）";
+                noteCell.appendChild(noteInput);
+
+                const actionCell = newRow.insertCell(4);
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "刪除";
+                deleteButton.addEventListener("click", function() {
+                    table.deleteRow(newRow.rowIndex - 1);
+                    updateTotalExpense();
+                    updateCategoryTotals();
+                });
+                actionCell.appendChild(deleteButton);
+
+                amountInput.addEventListener("input", function() {
+                    updateTotalExpense();
+                    updateCategoryTotals();
+                });
+
+                itemInput.addEventListener("input", function() {
+                    updateCategoryTotals();
+                });
+
+                noteInput.addEventListener("input", function() {
+                    updateCategoryTotals();
+                });
+
+                updateTotalExpense();
+                updateCategoryTotals();
+            });
+
+            // 更新總支出
+            function updateTotalExpense() {
+                const rows = document.getElementById("expense-table").getElementsByTagName('tbody')[0].rows;
+                let total = 0;
+
+                for (let row of rows) {
+                    const amountCell = row.cells[2].getElementsByTagName("input")[0];
+                    const amount = parseFloat(amountCell.value) || 0;
+                    total += amount;
+                }
+
+                document.getElementById("total-expense").textContent = total.toFixed(2);
+            }
+
+            // 更新各項目總支出
+            function updateCategoryTotals() {
+                const rows = document.getElementById("expense-table").getElementsByTagName('tbody')[0].rows;
+                categoryTotals = {}; // 清空之前的總合
+
+                // 遍歷每一行，更新每個人和項目的總支出
+                for (let row of rows) {
+                    const itemCell = row.cells[1].getElementsByTagName("input")[0];
+                    const amountCell = row.cells[2].getElementsByTagName("input")[0];
+                    const noteCell = row.cells[3].getElementsByTagName("input")[0];
+                    const itemName = itemCell.value.trim();
+                    const amount = parseFloat(amountCell.value) || 0;
+                    const personName = noteCell.value.trim();
+
+                    if (itemName && personName) {
+                        if (!categoryTotals[personName]) {
+                            categoryTotals[personName] = {};
+                        }
+
+                        if (!categoryTotals[personName][itemName]) {
+                            categoryTotals[personName][itemName] = 0;
+                        }
+                        categoryTotals[personName][itemName] += amount;
+                    }
+                }
+
+                // 顯示在網頁上
+                const categoryList = document.getElementById("category-list");
+                categoryList.innerHTML = ""; // 清空列表
+
+                // 顯示每個人和他們的項目總和
+                for (const person in categoryTotals) {
+                    const personGroup = document.createElement("li");
+                    personGroup.textContent = person;
+
+                    const subList = document.createElement("ul");
+
+                    for (const item in categoryTotals[person]) {
+                        const li = document.createElement("li");
+                        li.textContent = `${item}: ${categoryTotals[person][item].toFixed(2)} 元`;
+                        subList.appendChild(li);
+                    }
+
+                    personGroup.appendChild(subList);
+                    categoryList.appendChild(personGroup);
+                }
+            }
+
+            // 導出為 Excel
+            document.getElementById("export-btn").addEventListener("click", function() {
+                const table = document.getElementById("expense-table").getElementsByTagName('tbody')[0];
+                const rows = table.rows;
+                const data = [];
+
+                // 1. 第一行：報表填寫人姓名、申請日期
+                const reporterName = document.getElementById("reporter-name").value;
+                const reportDate = document.getElementById("report-date").value;
+                data.push(["填表人姓名", reporterName]);
+                data.push(["申請日期", reportDate]);
+
+                // 2. 第二行：出國類型
+                const tripType = document.getElementById("trip-type").value;
+                data.push(["出國類型", tripType]);
+
+                // 3. 第三行：出國日程、天數、附單據張數
+                const tripDates = document.getElementById("trip-dates").value;
+                const tripDays = document.getElementById("trip-days").value;
+                data.push(["出國日程", tripDates]);
+                data.push(["總天數", tripDays]);
+
+                // 4. 表格內容
+                data.push(["日期", "項目", "金額", "備註"]);
+                for (let row of rows) {
+                    const dateCell = row.cells[0].getElementsByTagName("input")[0].value;
+                    const itemCell = row.cells[1].getElementsByTagName("input")[0].value;
+                    const amountCell = row.cells[2].getElementsByTagName("input")[0].value;
+                    const noteCell = row.cells[3].getElementsByTagName("input")[0].value;
+                    data.push([dateCell, itemCell, amountCell, noteCell]);
+                }
+
+                // 5. 總支出
+                const totalRow = [
+                    ["", "", "總支出", "", document.getElementById("total-expense").textContent + " 元"]
+                ];
+                data.push(...totalRow);
+
+                // 6. 各項目總合
+                const categoryRow = [["", "", "各項目總合"]];
+                for (const person in categoryTotals) {
+                    categoryRow.push([person, "", ""]);
+                    for (const item in categoryTotals[person]) {
+                        categoryRow.push([person, item, categoryTotals[person][item].toFixed(2) + " 元"]);
+                    }
+                }
+                data.push(...categoryRow);
+
+                // 7. 生成工作表
+                const ws = XLSX.utils.aoa_to_sheet(data);
+
+                // 8. 創建工作簿並下載
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "記帳支出紀錄");
+                XLSX.writeFile(wb, "記帳支出紀錄.xlsx");
+            });
+        });
+    </script>
+</body>
+</html>
