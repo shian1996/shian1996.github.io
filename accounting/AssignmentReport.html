@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工作指派與追蹤</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3a3a3a;
+            margin-bottom: 20px;
+        }
+
+        .task-input {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .task-input input, .task-input select {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .task-input button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-input button:hover {
+            background-color: #0056b3;
+        }
+
+        .task-container {
+            margin-top: 30px;
+        }
+
+        .task-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .task-item.completed {
+            background-color: #d4edda;
+        }
+
+        .task-item span {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .task-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .task-actions input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .task-actions button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-actions button:hover {
+            background-color: #c82333;
+        }
+
+        .remarks, .questions {
+            margin-top: 15px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            resize: none;
+            width: 100%;
+            min-height: 60px;
+        }
+
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+
+        .login-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .login-container button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .logout-btn {
+            background-color: #ffc107;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .task-login {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-login input {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .task-login button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-login button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>工作指派與追蹤</h1>
+
+<!-- 登入區 -->
+<div class="login-container" id="login-container">
+    <input type="text" id="username" placeholder="使用者名稱" />
+    <input type="password" id="password" placeholder="密碼" />
+    <button onclick="login()">登入</button>
+    <p class="error-message" id="error-message" style="display: none;">帳號或密碼錯誤！</p>
+</div>
+
+<!-- 工作指派區 -->
+<div class="task-input" id="task-input" style="display: none;">
+    <h3>指派新工作</h3>
+    <input type="text" id="new-task" placeholder="輸入新工作內容">
+    <input type="date" id="task-deadline" placeholder="選擇截止日期">
+    <input type="text" id="assignee" placeholder="指定工作人員 (名稱)">
+    <input type="password" id="task-password" placeholder="設定工作密碼">
+    <button onclick="addTask()">指派工作</button>
+</div>
+
+<!-- 登出按鈕 -->
+<button class="logout-btn" id="logout-btn" style="display: none;" onclick="logout()">登出</button>
+
+<!-- 工作清單 -->
+<div class="task-container" id="task-list">
+    <h3>工作清單</h3>
+    <!-- 工作項目將顯示在這裡 -->
+</div>
+
+<script>
+    // 登入的帳號與密碼
+    const validUsername = "tseng_family";
+    const validPassword = "jin_work0909";
+
+    // 檢查是否已登入
+    document.addEventListener("DOMContentLoaded", function() {
+        const loggedInUser = localStorage.getItem("loggedInUser");
+        if (loggedInUser) {
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("task-input").style.display = "block";
+            document.getElementById("logout-btn").style.display = "inline-block";  // 顯示登出按鈕
+        } else {
+            document.getElementById("login-container").style.display = "block";
+            document.getElementById("task-input").style.display = "none";
+            document.getElementById("logout-btn").style.display = "none";  // 隱藏登出按鈕
+        }
+        loadTasks();
+    });
+
+    // 登入功能
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // 檢查帳號與密碼
+        if (username === validUsername && password === validPassword) {
+            localStorage.setItem("loggedInUser", username); // 儲存登入資料
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("task-input").style.display = "block";
+            document.getElementById("logout-btn").style.display = "inline-block";  // 顯示登出按鈕
+            document.getElementById("error-message").style.display = "none";
+            loadTasks(); // 重新載入工作清單
+        } else {
+            document.getElementById("error-message").style.display = "block"; // 顯示錯誤訊息
+        }
+    }
+
+    // 登出功能
+    function logout() {
+        localStorage.removeItem("loggedInUser");
+        document.getElementById("login-container").style.display = "block";
+        document.getElementById("task-input").style.display = "none";
+        document.getElementById("logout-btn").style.display = "none"; // 隱藏登出按鈕
+        loadTasks(); // 重新載入工作清單
+    }
+
+    // 載入工作清單
+    function loadTasks() {
+        const taskList = document.getElementById("task-list");
+        taskList.innerHTML = "<h3>工作清單</h3>";
+        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        tasks.forEach((task, index) => {
+            const taskItem = document.createElement("div");
+            taskItem.classList.add("task-item");
+            if (task.completed) taskItem.classList.add("completed");
+
+            taskItem.innerHTML = `
+                <span>工作名稱: ${task.name}</span>
+                <span>截止日期: ${task.deadline}</span>
+                <span>指派給: ${task.assignee}</span>
+                <textarea class="remarks" placeholder="填寫備註" ${task.completed ? "disabled" : ""}>${task.remarks}</textarea>
+                <textarea class="questions" placeholder="填寫問題" ${task.completed ? "disabled" : ""}>${task.questions}</textarea>
+                <div class="task-actions">
+                    <div class="task-login">
+                        <input type="password" class="task-password" placeholder="輸入工作密碼">
+                        <button onclick="verifyPassword(${index})">登入</button>
+                    </div>
+                    <div class="task-actions">
+                        ${localStorage.getItem("loggedInUser") === validUsername ? `
+                            <button class="remove-btn" onclick="removeTask(${index})">刪除</button>` : ""}
+                        <label>
+                            <input type="checkbox" ${task.completed ? "checked" : ""} onclick="toggleCompletion(${index})" ${task.completed || localStorage.getItem("loggedInUser") !== task.assignee ? "disabled" : ""}>
+                            完成
+                        </label>
+                    </div>
+                </div>
+            `;
+            taskList.appendChild(taskItem);
+        });
+    }
+
+    // 驗證密碼並開啟勾選與問題輸入
+    function verifyPassword(index) {
+        const taskPassword = document.querySelectorAll(".task-password")[index].value;
+        const tasks = JSON.parse(localStorage.getItem("tasks"));
+        const task = tasks[index];
+
+        if (taskPassword === task.password) {
+            alert("登入成功！");
+            const taskItem = document.querySelectorAll(".task-item")[index];
+            taskItem.querySelector("input[type='checkbox']").disabled = false; // 啟用完成選項
+            taskItem.querySelector(".questions").disabled = false; // 啟用問題輸入
+            taskItem.querySelector(".remarks").disabled = false; // 啟用備註輸入
+        } else {
+            alert("密碼錯誤！");
+        }
+    }
+
+    // 新增任務
+    function addTask() {
+        const taskInput = document.getElementById("new-task");
+        const taskDeadline = document.getElementById("task-deadline");
+        const assignee = document.getElementById("assignee");
+        const taskPassword = document.getElementById("task-password");
+
+        if (!taskInput.value.trim() || !taskDeadline.value.trim() || !assignee.value.trim() || !taskPassword.value.trim()) {
+            alert("請輸入所有字段！");
+            return;
+        }
+
+        const newTask = {
+            name: taskInput.value,
+            deadline: taskDeadline.value,
+            assignee: assignee.value,
+            password: taskPassword.value,
+            completed: false,
+            remarks: "",
+            questions: ""
+        };
+
+        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.push(newTask);
+        saveTasks(tasks);
+
+        taskInput.value = "";
+        taskDeadline.value = "";
+        assignee.value = "";
+        taskPassword.value = "";
+        loadTasks();
+    }
+
+    // 儲存任務到 LocalStorage
+    function saveTasks(tasks) {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    // 切換完成狀態
+    function toggleCompletion(index) {
+        const tasks = JSON.parse(localStorage.getItem("tasks"));
+        tasks[index].completed = !tasks[index].completed;
+        saveTasks(tasks);
+        loadTasks();
+    }
+
+    // 刪除工作
+    function removeTask(index) {
+        const tasks = JSON.parse(localStorage.getItem("tasks"));
+        tasks.splice(index, 1);
+        saveTasks(tasks);
+        loadTasks();
+    }
+</script>
+
+</body>
+</html>
