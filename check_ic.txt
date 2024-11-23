@@ -292,3 +292,5 @@ check ic ok :2024111700
 check ic ok :2024111800
 check ic ok :2024111900
 check ic ok :2024112100
+check ic ok :2024112000
+check ic false :2024112200
