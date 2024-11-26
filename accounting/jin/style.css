@@ -208,3 +208,42 @@ button:hover {
     font-size: 1rem;
     font-weight: bold;
 }
+
+/* 手機螢幕設計 */
+@media (max-width: 600px) {
+    .login-container, .task-input {
+        max-width: 100%;  /* 調整為全寬 */
+        padding: 15px;    /* 減少內邊距 */
+    }
+
+    .task-item {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .task-actions {
+        font-size: 14px;  /* 減少文字大小 */
+    }
+
+    h1 {
+        font-size: 1.5rem;  /* 減小標題字型 */
+    }
+
+    button {
+        padding: 8px 12px;  /* 按鈕大小調整 */
+    }
+}
+
+/* 平板螢幕設計 */
+@media (max-width: 1024px) {
+    .login-container, .task-input {
+        max-width: 80%;  /* 調整為較窄的寬度 */
+    }
+}
+
+/* 其他設備 */
+@media (max-width: 1200px) {
+    .container {
+        padding: 15px;  /* 縮小容器內邊距 */
+    }
+}
