@@ -154,3 +154,59 @@ function removeTask(index) {
     localStorage.setItem("tasks", JSON.stringify(taskList));
     loadTasks();
 }
+
+// 修改 loadTasks 函數，從伺服器讀取資料
+async function loadTasks() {
+    const response = await fetch('http://localhost:3000/tasks');
+    const tasks = await response.json();
+    const taskListContainer = document.getElementById("task-list");
+    taskListContainer.innerHTML = "";  // 清空清單
+
+    tasks.forEach((task, index) => {
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task-item");
+
+        taskItem.innerHTML = `
+            <h4>${task.name}</h4>
+            <p>指派給：${task.assignee}</p>
+            <p>截止日期：${task.deadline}</p>
+            <button onclick="checkPassword(${index})">查看備註</button>
+        `;
+
+        taskListContainer.appendChild(taskItem);
+    });
+}
+
+// 修改 addTask 函數，將資料發送到伺服器
+async function addTask() {
+    const taskName = document.getElementById("new-task").value;
+    const deadline = document.getElementById("task-deadline").value;
+    const assignee = document.getElementById("assignee").value;
+    const password = document.getElementById("task-password").value;
+    const remarks = document.getElementById("remarks").value;
+
+    if (taskName && deadline && assignee && password) {
+        const newTask = {
+            name: taskName,
+            deadline: deadline,
+            assignee: assignee,
+            password: password,
+            remarks: remarks,
+            completed: false
+        };
+
+        const response = await fetch('http://localhost:3000/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newTask)
+        });
+
+        const task = await response.json();
+        loadTasks();  // 重新加載工作清單
+    } else {
+        alert("請填寫所有必填欄位！");
+    }
+}
+
