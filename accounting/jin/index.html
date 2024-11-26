@@ -5,31 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工作指派與追蹤</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
-
-        // Firebase 配置
-        const firebaseConfig = {
-            apiKey: "AIzaSyCl6VXMgsDvOvQw88aW8gJ_C05uieLcS4U",  // 替換為你的 API 金鑰
-            authDomain: "jinwork-9ff50.firebaseapp.com",  // 替換為你的認證域名
-            projectId: "jinwork-9ff50",  // 替換為你的專案 ID
-            storageBucket: "jinwork-9ff50.firebasestorage.app",  // 替換為你的存儲桶
-            messagingSenderId: "542996811198",  // 替換為你的發送 ID
-            appId: "1:542996811198:web:de616478b83bbedab2fdef",  // 替換為你的應用 ID
-            measurementId: "G-99V7C5QJD0"  // 如果有，請替換為你的測量 ID
-        };
-
-        // 初始化 Firebase
-        const app = initializeApp(firebaseConfig);
-
-        // 初始化 Firestore 和 Analytics（如果需要）
-        const db = getFirestore(app);
-        const analytics = getAnalytics(app);
-    </script>
 </head>
 <body>
 
@@ -71,9 +46,6 @@
         <!-- 工作項目將顯示在這裡 -->
     </div>
 
-    <script src="firebaseConfig.js"></script>
-    <script src="auth.js"></script>
-    <script src="taskManager.js"></script>
-    <script src="taskUI.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
