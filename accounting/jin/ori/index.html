@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工作指派與追蹤</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase App (核心 SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-    <!-- Firebase Authentication SDK --> 
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-    <!-- Firebase Firestore SDK (用來儲存工作清單) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
 </head>
 <body>
 
@@ -51,23 +45,7 @@
         <h3>工作清單</h3>
         <!-- 工作項目將顯示在這裡 -->
     </div>
-    <script type="module">
-      // 引入需要的 Firebase 函數
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
-      // Firebase 配置
-      const firebaseConfig = {
-        apiKey: "AIzaSyBUneUhMxm-lzTJ2VP-iFNnXL84mCuOiw4",
-        authDomain: "accounting-e85c8.firebaseapp.com",
-        projectId: "accounting-e85c8",
-        storageBucket: "accounting-e85c8.appspot.com",
-        messagingSenderId: "356234691327",
-        appId: "1:356234691327:web:98acb04d486eab30c602ca"
-      };
-
-      // 初始化 Firebase
-      const app = initializeApp(firebaseConfig);
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

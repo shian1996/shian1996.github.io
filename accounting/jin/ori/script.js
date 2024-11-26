@@ -223,13 +223,3 @@ function toggleTaskCompletion(index) {
     // 儲存任務狀態
     localStorage.setItem("tasks", JSON.stringify(taskList));
 }
-
-// Firebase 配置
-const firebaseConfig = {
-  apiKey: "AIzaSyBUneUhMxm-lzTJ2VP-iFNnXL84mCuOiw4",
-  authDomain: "accounting-e85c8.firebaseapp.com",
-  projectId: "accounting-e85c8",
-  storageBucket: "accounting-e85c8.appspot.com",
-  messagingSenderId: "356234691327",
-  appId: "1:356234691327:web:98acb04d486eab30c602ca"
-};

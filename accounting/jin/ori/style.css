@@ -1,0 +1,210 @@
+/* 通用樣式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+/* 登入區域 */
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;  /* 增大寬度，最大設置為600px */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;  /* 確保 padding 不會影響到寬度 */
+}
+
+/* 增加右邊距離，避免與邊框緊貼 */
+input[type="text"],
+input[type="password"],
+input[type="date"] {
+    padding-right: 15px;  /* 增加右側間距 */
+}
+
+/* 按鈕 */
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* 管理者操作區域 */
+.task-input {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;  /* 增大寬度，最大設置為600px */
+    margin: 20px auto;
+}
+
+.task-input input {
+    margin-bottom: 10px;
+}
+
+/* 工作清單區域 */
+.task-list {
+    margin-top: 30px;
+}
+
+.task-item {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.completed {
+    background-color: #e0ffe0; /* 當工作完成時顯示綠色 */
+}
+
+.task-item.near-deadline {
+    background-color: #ffeb3b; /* 工作期限剩一天顯示黃色 */
+}
+
+.task-actions {
+    margin-top: 10px;
+}
+
+.remarks {
+    width: 100%;
+    padding: 5px;
+}
+
+.submit-btn,
+.remove-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+}
+
+.submit-btn:hover,
+.remove-btn:hover {
+    opacity: 0.8;
+}
+
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* 新增工作密碼欄位的樣式 */
+.task-item input[type="password"] {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+/* 新增錯誤訊息樣式 */
+.password-error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* 新增勾選完成的樣式 */
+.task-item input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+/* 標註即將過期的工作顏色 */
+.task-item {
+    background-color: #ffffff; /* 默認為白色 */
+}
+
+.task-item.warning {
+    background-color: #f8d7da; /* 紅色背景 */
+}
+
+.task-item.warning p {
+    color: red;
+    font-weight: bold;
+}
+
+.task-item.alert {
+    background-color: #fff3cd; /* 黃色背景 */
+}
+
+.task-item.alert p {
+    color: #856404;
+    font-weight: bold;
+}
+
+.task-item.completed {
+    background-color: #d4edda; /* 綠色背景 */
+}
+
+/* 額外提示訊息的樣式 */
+.task-item p {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}
