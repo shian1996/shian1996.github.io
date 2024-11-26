@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工作指派與追蹤</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase App (核心 SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-    <!-- Firebase Authentication SDK --> 
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-    <!-- Firebase Firestore SDK (用來儲存工作清單) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js"></script>
 </head>
 <body>
 
@@ -21,7 +19,7 @@
     <!-- 登入區 -->
     <div class="login-container" id="login-container">
         <h2>登入系統</h2>
-        <input type="text" id="username" placeholder="使用者名稱" />
+        <input type="email" id="username" placeholder="電子郵件" />
         <input type="password" id="password" placeholder="密碼" />
         <button onclick="login()">登入</button>
         <p class="error-message" id="error-message" style="display: none;">帳號或密碼錯誤！</p>
@@ -35,11 +33,9 @@
         <input type="text" id="assignee" placeholder="指定工作人員 (名稱)">
         <input type="password" id="task-password" placeholder="設定工作密碼">
 
-        <!-- 新增備註區域 -->
         <h3>工作備註</h3>
         <textarea id="remarks" placeholder="輸入備註內容"></textarea>
 
-        <!-- 提交工作按鈕移至備註下面 -->
         <button onclick="addTask()">指派工作</button>
     </div>
 
@@ -51,11 +47,14 @@
         <h3>工作清單</h3>
         <!-- 工作項目將顯示在這裡 -->
     </div>
-    <script type="module">
-      // 引入需要的 Firebase 函數
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
-      // Firebase 配置
+    <!-- Firebase 配置及初始化 -->
+    <script type="module">
+      // 引入 Firebase 函數
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+      import { getFirestore, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
       const firebaseConfig = {
         apiKey: "AIzaSyBUneUhMxm-lzTJ2VP-iFNnXL84mCuOiw4",
         authDomain: "accounting-e85c8.firebaseapp.com",
@@ -65,9 +64,164 @@
         appId: "1:356234691327:web:98acb04d486eab30c602ca"
       };
 
-      // 初始化 Firebase
       const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const db = getFirestore(app);
+
+      // 登入功能
+      function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
+
+        signInWithEmailAndPassword(auth, username, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log("登入成功", user);
+            localStorage.setItem("loggedInUser", user.email); // 儲存用戶資訊
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("task-input").style.display = "block";
+            document.getElementById("logout-btn").style.display = "inline-block";
+            loadTasks(); // 登入後載入任務
+          })
+          .catch((error) => {
+            errorMessage.style.display = "block"; // 顯示錯誤訊息
+            console.error("登入錯誤", error.message);
+          });
+      }
+
+      // 登出功能
+      function logout() {
+        signOut(auth).then(() => {
+          localStorage.removeItem("loggedInUser");
+          document.getElementById("login-container").style.display = "block";
+          document.getElementById("task-input").style.display = "none";
+          document.getElementById("logout-btn").style.display = "none";
+        }).catch((error) => {
+          console.error("登出錯誤", error.message);
+        });
+      }
+
+      // 監聽用戶登入狀態變化
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          document.getElementById("login-container").style.display = "none";
+          document.getElementById("task-input").style.display = "block";
+          document.getElementById("logout-btn").style.display = "inline-block";
+          loadTasks(); // 載入任務清單
+        } else {
+          document.getElementById("login-container").style.display = "block";
+          document.getElementById("task-input").style.display = "none";
+          document.getElementById("logout-btn").style.display = "none";
+        }
+      });
+
+      // 儲存工作到 Firestore
+      function addTask() {
+        const taskName = document.getElementById("new-task").value;
+        const taskDeadline = document.getElementById("task-deadline").value;
+        const assignee = document.getElementById("assignee").value;
+        const taskPassword = document.getElementById("task-password").value;
+        const remarks = document.getElementById("remarks").value;
+
+        if (!taskName || !taskDeadline || !assignee) {
+          alert("請填寫所有必要欄位！");
+          return;
+        }
+
+        const tasksRef = collection(db, "tasks");
+
+        // 新增任務
+        addDoc(tasksRef, {
+          name: taskName,
+          deadline: taskDeadline,
+          assignee: assignee,
+          password: taskPassword,
+          remarks: remarks,
+          status: "進行中" // 預設狀態為「進行中」
+        })
+        .then(() => {
+          console.log("任務指派成功！");
+          loadTasks(); // 更新工作清單
+        })
+        .catch((error) => {
+          console.error("新增任務錯誤", error);
+        });
+      }
+
+      // 載入任務清單
+      function loadTasks() {
+        const tasksRef = collection(db, "tasks");
+        getDocs(tasksRef).then((querySnapshot) => {
+          const taskList = document.getElementById("task-list");
+          taskList.innerHTML = ""; // 清空清單
+          querySnapshot.forEach((doc) => {
+            const task = doc.data();
+            const taskItem = document.createElement("div");
+            taskItem.innerHTML = `
+              <h4>${task.name}</h4>
+              <p>指派給：${task.assignee}</p>
+              <p>截止日期：${task.deadline}</p>
+              <p>備註：${task.remarks}</p>
+              <p>狀態：<span onclick="changeTaskStatus('${doc.id}', '${task.status}')">${task.status}</span></p>
+              <button onclick="editTask('${doc.id}')">編輯</button>
+              <button onclick="deleteTask('${doc.id}')">刪除</button>
+            `;
+            taskList.appendChild(taskItem);
+          });
+        });
+      }
+
+      // 更改任務狀態
+      function changeTaskStatus(taskId, currentStatus) {
+        const taskRef = doc(db, "tasks", taskId);
+        const newStatus = currentStatus === "進行中" ? "已完成" : "進行中"; // 切換狀態
+
+        updateDoc(taskRef, { status: newStatus }).then(() => {
+          console.log("任務狀態更新為", newStatus);
+          loadTasks(); // 更新工作清單
+        }).catch((error) => {
+          console.error("更新狀態錯誤", error);
+        });
+      }
+
+      // 編輯任務
+      function editTask(taskId) {
+        const taskRef = doc(db, "tasks", taskId);
+        getDoc(taskRef).then((docSnap) => {
+          const task = docSnap.data();
+          document.getElementById("new-task").value = task.name;
+          document.getElementById("task-deadline").value = task.deadline;
+          document.getElementById("assignee").value = task.assignee;
+          document.getElementById("remarks").value = task.remarks;
+          
+          // 更新任務
+          document.querySelector("button[onclick='addTask()']").onclick = function() {
+            updateDoc(taskRef, {
+              name: document.getElementById("new-task").value,
+              deadline: document.getElementById("task-deadline").value,
+              assignee: document.getElementById("assignee").value,
+              remarks: document.getElementById("remarks").value
+            }).then(() => {
+              loadTasks();
+            });
+          };
+        });
+      }
+
+      // 刪除任務
+      function deleteTask(taskId) {
+        const taskRef = doc(db, "tasks", taskId);
+
+        deleteDoc(taskRef).then(() => {
+          console.log("任務已刪除");
+          loadTasks(); // 更新任務清單
+        }).catch((error) => {
+          console.error("刪除錯誤", error);
+        });
+      }
+
     </script>
-    <script src="script.js"></script>
+
 </body>
 </html>
