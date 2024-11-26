@@ -91,8 +91,8 @@
         .task-actions button {
             background-color: #dc3545;
             color: white;
-            border: none;
             padding: 8px 15px;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
         }
@@ -196,6 +196,32 @@
         .task-login button:hover {
             background-color: #0056b3;
         }
+
+        .clear-btn {
+            background-color: #17a2b8;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .clear-btn:hover {
+            background-color: #138496;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -253,17 +279,16 @@
     function login() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
 
-        // 檢查帳號與密碼
         if (username === validUsername && password === validPassword) {
-            localStorage.setItem("loggedInUser", username); // 儲存登入資料
+            localStorage.setItem("loggedInUser", username);
             document.getElementById("login-container").style.display = "none";
             document.getElementById("task-input").style.display = "block";
-            document.getElementById("logout-btn").style.display = "inline-block";  // 顯示登出按鈕
-            document.getElementById("error-message").style.display = "none";
-            loadTasks(); // 重新載入工作清單
+            document.getElementById("logout-btn").style.display = "inline-block";
+            loadTasks();
         } else {
-            document.getElementById("error-message").style.display = "block"; // 顯示錯誤訊息
+            errorMessage.style.display = "block";
         }
     }
 
@@ -272,117 +297,129 @@
         localStorage.removeItem("loggedInUser");
         document.getElementById("login-container").style.display = "block";
         document.getElementById("task-input").style.display = "none";
-        document.getElementById("logout-btn").style.display = "none"; // 隱藏登出按鈕
-        loadTasks(); // 重新載入工作清單
+        document.getElementById("logout-btn").style.display = "none";
+        loadTasks();
     }
 
-    // 載入工作清單
+    // 讀取並顯示所有工作
     function loadTasks() {
-        const taskList = document.getElementById("task-list");
-        taskList.innerHTML = "<h3>工作清單</h3>";
-        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+        const taskListElement = document.getElementById("task-list");
+        taskListElement.innerHTML = "";
 
+        const loggedInUser = localStorage.getItem("loggedInUser");
         tasks.forEach((task, index) => {
             const taskItem = document.createElement("div");
             taskItem.classList.add("task-item");
-            if (task.completed) taskItem.classList.add("completed");
+
+            if (task.completed) {
+                taskItem.classList.add("completed");
+            }
+
+            const isAssignee = task.assignee === loggedInUser;
+            const isAdmin = loggedInUser === validUsername;
 
             taskItem.innerHTML = `
-                <span>工作名稱: ${task.name}</span>
-                <span>截止日期: ${task.deadline}</span>
-                <span>指派給: ${task.assignee}</span>
-                <textarea class="remarks" placeholder="填寫備註" ${task.completed ? "disabled" : ""}>${task.remarks}</textarea>
-                <textarea class="questions" placeholder="填寫問題" ${task.completed ? "disabled" : ""}>${task.questions}</textarea>
+                <span><strong>工作:</strong> ${task.taskContent} (截止: ${task.deadline})</span>
+                <span><strong>指派給:</strong> ${task.assignee}</span>
                 <div class="task-actions">
-                    <div class="task-login">
-                        <input type="password" class="task-password" placeholder="輸入工作密碼">
-                        <button onclick="verifyPassword(${index})">登入</button>
-                    </div>
-                    <div class="task-actions">
-                        ${localStorage.getItem("loggedInUser") === validUsername ? `
-                            <button class="remove-btn" onclick="removeTask(${index})">刪除</button>` : ""}
-                        <label>
-                            <input type="checkbox" ${task.completed ? "checked" : ""} onclick="toggleCompletion(${index})" ${task.completed || localStorage.getItem("loggedInUser") !== task.assignee ? "disabled" : ""}>
-                            完成
-                        </label>
-                    </div>
+                    <input type="checkbox" ${task.completed ? "checked" : ""} onclick="requestPasswordAndComplete(${index})" ${isAdmin || isAssignee ? "" : "disabled"} /> 完成工作
+                    ${isAdmin ? `<button class="remove-btn" onclick="requestPasswordAndRemove(${index})">刪除工作</button>` : ""}
                 </div>
+                ${isAdmin ? `
+                    <textarea class="remarks" placeholder="管理者備註" id="remark-${index}" rows="4">${task.remark}</textarea>
+                    <button class="submit-btn" onclick="submitRemark(${index})">提交備註</button>
+                ` : ""}
+                ${isAssignee ? `
+                    <textarea class="questions" placeholder="提出問題" id="question-${index}" rows="4">${task.question}</textarea>
+                    <button class="submit-btn" onclick="submitQuestion(${index})">提交問題</button>
+                ` : ""}
             `;
-            taskList.appendChild(taskItem);
+
+            taskListElement.appendChild(taskItem);
         });
     }
 
-    // 驗證密碼並開啟勾選與問題輸入
-    function verifyPassword(index) {
-        const taskPassword = document.querySelectorAll(".task-password")[index].value;
+    // 請求密碼並完成工作
+    function requestPasswordAndComplete(index) {
         const tasks = JSON.parse(localStorage.getItem("tasks"));
         const task = tasks[index];
+        
+        const enteredPassword = prompt("請輸入工作密碼：");
 
-        if (taskPassword === task.password) {
-            alert("登入成功！");
-            const taskItem = document.querySelectorAll(".task-item")[index];
-            taskItem.querySelector("input[type='checkbox']").disabled = false; // 啟用完成選項
-            taskItem.querySelector(".questions").disabled = false; // 啟用問題輸入
-            taskItem.querySelector(".remarks").disabled = false; // 啟用備註輸入
+        if (enteredPassword === task.password) {
+            tasks[index].completed = !tasks[index].completed;
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
         } else {
-            alert("密碼錯誤！");
+            alert("密碼錯誤，請重試！");
         }
     }
 
-    // 新增任務
+    // 請求密碼並刪除工作
+    function requestPasswordAndRemove(index) {
+        const tasks = JSON.parse(localStorage.getItem("tasks"));
+        const task = tasks[index];
+        
+        const enteredPassword = prompt("請輸入工作密碼以刪除此工作：");
+
+        if (enteredPassword === task.password) {
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+        } else {
+            alert("密碼錯誤，無法刪除工作！");
+        }
+    }
+
+    // 新增工作
     function addTask() {
-        const taskInput = document.getElementById("new-task");
-        const taskDeadline = document.getElementById("task-deadline");
-        const assignee = document.getElementById("assignee");
-        const taskPassword = document.getElementById("task-password");
+        const taskContent = document.getElementById("new-task").value;
+        const deadline = document.getElementById("task-deadline").value;
+        const assignee = document.getElementById("assignee").value;
+        const password = document.getElementById("task-password").value;
 
-        if (!taskInput.value.trim() || !taskDeadline.value.trim() || !assignee.value.trim() || !taskPassword.value.trim()) {
-            alert("請輸入所有字段！");
-            return;
+        if (taskContent && deadline && assignee && password) {
+            const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+            tasks.push({
+                taskContent,
+                deadline,
+                assignee,
+                password,
+                completed: false,
+                remark: "",
+                question: ""
+            });
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+            document.getElementById("new-task").value = "";
+            document.getElementById("task-deadline").value = "";
+            document.getElementById("assignee").value = "";
+            document.getElementById("task-password").value = "";
+        } else {
+            alert("請填寫所有欄位！");
         }
-
-        const newTask = {
-            name: taskInput.value,
-            deadline: taskDeadline.value,
-            assignee: assignee.value,
-            password: taskPassword.value,
-            completed: false,
-            remarks: "",
-            questions: ""
-        };
-
-        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        tasks.push(newTask);
-        saveTasks(tasks);
-
-        taskInput.value = "";
-        taskDeadline.value = "";
-        assignee.value = "";
-        taskPassword.value = "";
-        loadTasks();
     }
 
-    // 儲存任務到 LocalStorage
-    function saveTasks(tasks) {
+    // 提交管理者備註
+    function submitRemark(index) {
+        const tasks = JSON.parse(localStorage.getItem("tasks"));
+        const remark = document.getElementById(`remark-${index}`).value;
+        tasks[index].remark = remark;
         localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
-
-    // 切換完成狀態
-    function toggleCompletion(index) {
-        const tasks = JSON.parse(localStorage.getItem("tasks"));
-        tasks[index].completed = !tasks[index].completed;
-        saveTasks(tasks);
         loadTasks();
     }
 
-    // 刪除工作
-    function removeTask(index) {
+    // 提交問題
+    function submitQuestion(index) {
         const tasks = JSON.parse(localStorage.getItem("tasks"));
-        tasks.splice(index, 1);
-        saveTasks(tasks);
+        const question = document.getElementById(`question-${index}`).value;
+        tasks[index].question = question;
+        localStorage.setItem("tasks", JSON.stringify(tasks));
         loadTasks();
     }
 </script>
 
 </body>
 </html>
+
