@@ -300,3 +300,7 @@ check ic false :2024112400
 check ic false :2024112500
 check ic ok :2024112400
 check ic false :2024112500
+check ic false :2024112600
+check ic ok :2024112600
+check ic false :2024112700
+check ic ok :2024112700
