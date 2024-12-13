@@ -8,3 +8,5 @@ check ic ok :2024120800
 check ic ok :2024120900
 check ic ok :2024121000
 check ic ok :2024121100
+check ic false :2024010100
+check ic ok :2024121200
