@@ -17,3 +17,4 @@ check ic ok :2024121100
 check ic false :2024121200
 check ic ok :2024121600
 check ic ok :2024121700
+check ic ok :2024121800
