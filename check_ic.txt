@@ -39,3 +39,7 @@ check ic ok :2024123100
 check ic ok :2024123100
 check ic ok :2025010100
 check ic ok :2025010200
+check ic ok :2025010100
+check ic false :2025010200
+check ic ok :2025010300
+check ic ok :2025010300
