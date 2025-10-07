@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的智慧行李清單</title>
+    <style>
+        /* 頁面基礎樣式 */
+        body {
+            font-family: '微軟正黑體', 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* 輸入框和按鈕樣式 */
+        .input-group {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        #newItem {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        #addItemBtn {
+            padding: 10px 15px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #addItemBtn:hover {
+            background-color: #218838;
+        }
+
+        /* 清單樣式 */
+        #packingList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #packingList li {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 18px;
+        }
+
+        #packingList li:last-child {
+            border-bottom: none;
+        }
+        
+        /* 勾選框樣式 */
+        #packingList input[type="checkbox"] {
+            margin-right: 15px;
+            min-width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* 完成項目樣式 (刪除線) */
+        .completed span {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        /* 底部按鈕 */
+        .footer-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: opacity 0.3s;
+        }
+        
+        #clearAllBtn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #clearCompletedBtn {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        #clearAllBtn:hover, #clearCompletedBtn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>✈️ 行李清單整理 📝</h1>
+
+        <div class="input-group">
+            <input type="text" id="newItem" placeholder="輸入要新增的行李項目...">
+            <button id="addItemBtn">新增</button>
+        </div>
+
+        <ul id="packingList">
+            </ul>
+        
+        <div class="footer-buttons">
+             <button id="clearCompletedBtn">清除已完成項目</button>
+             <button id="clearAllBtn">重置所有清單</button>
+        </div>
+    </div>
+
+    <script>
+        const list = document.getElementById('packingList');
+        const newItemInput = document.getElementById('newItem');
+        const addItemBtn = document.getElementById('addItemBtn');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+        
+        // 預設清單 (首次載入時使用)
+        const defaultItems = [
+            { text: '護照/身份證件', completed: false },
+            { text: '手機及充電線', completed: false },
+            { text: '轉換插頭', completed: false },
+            { text: '換洗衣物', completed: false },
+            { text: '洗漱用品', completed: false },
+            { text: '藥品與急救包', completed: false },
+            { text: '錢包與信用卡', completed: false }
+        ];
+
+        // 1. 從 localStorage 載入清單
+        function loadList() {
+            // 嘗試從本地儲存中獲取資料
+            const storedList = localStorage.getItem('packingList');
+            
+            // 如果本地有儲存的資料，就解析它；否則使用預設清單
+            let items = storedList ? JSON.parse(storedList) : defaultItems;
+            
+            // 渲染清單到網頁上
+            renderList(items);
+        }
+
+        // 2. 儲存清單到 localStorage
+        function saveList() {
+            // 獲取當前網頁上的所有清單項目
+            const currentItems = Array.from(list.children).map(li => {
+                const checkbox = li.querySelector('input[type="checkbox"]');
+                const text = li.querySelector('span').textContent;
+                return {
+                    text: text,
+                    completed: checkbox.checked
+                };
+            });
+            // 儲存為 JSON 格式的字串
+            localStorage.setItem('packingList', JSON.stringify(currentItems));
+        }
+
+        // 3. 渲染（繪製）清單到網頁
+        function renderList(items) {
+            list.innerHTML = ''; // 清空現有的清單
+            items.forEach(item => {
+                const li = document.createElement('li');
+                
+                // 創建勾選框
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = item.completed;
+                
+                // 創建文字
+                const textSpan = document.createElement('span');
+                textSpan.textContent = item.text;
+                
+                // 根據狀態設定刪除線樣式
+                if (item.completed) {
+                    li.classList.add('completed');
+                }
+
+                // 組合元素
+                li.appendChild(checkbox);
+                li.appendChild(textSpan);
+                list.appendChild(li);
+
+                // **事件監聽：當勾選狀態改變時，儲存清單**
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        li.classList.add('completed');
+                    } else {
+                        li.classList.remove('completed');
+                    }
+                    saveList();
+                });
+            });
+        }
+
+        // 4. 新增項目功能
+        function addItem() {
+            const text = newItemInput.value.trim();
+            if (text === "") {
+                alert("請輸入清單項目！");
+                return;
+            }
+
+            // 獲取當前清單，新增新項目
+            const currentItems = Array.from(list.children).map(li => ({
+                text: li.querySelector('span').textContent,
+                completed: li.querySelector('input[type="checkbox"]').checked
+            }));
+            currentItems.push({ text: text, completed: false });
+            
+            // 重新渲染並儲存
+            renderList(currentItems);
+            saveList();
+            
+            newItemInput.value = ''; // 清空輸入框
+            newItemInput.focus();
+        }
+        
+        // 5. 事件監聽器
+        addItemBtn.addEventListener('click', addItem);
+        newItemInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addItem();
+            }
+        });
+        
+        // 清除所有項目 (重置為預設清單)
+        clearAllBtn.addEventListener('click', () => {
+             if (confirm("確定要清除所有清單，並重置為預設項目嗎？")) {
+                localStorage.removeItem('packingList'); // 刪除本地儲存
+                loadList(); // 重新載入預設清單
+            }
+        });
+        
+        // 清除已完成項目
+        clearCompletedBtn.addEventListener('click', () => {
+            if (confirm("確定要從清單中移除所有已勾選的項目嗎？")) {
+                // 過濾掉已完成的項目
+                const uncompletedItems = Array.from(list.children)
+                    .filter(li => !li.classList.contains('completed'))
+                    .map(li => ({
+                        text: li.querySelector('span').textContent,
+                        completed: false // 未完成
+                    }));
+
+                renderList(uncompletedItems);
+                saveList();
+            }
+        });
+
+        // 頁面載入時執行：載入儲存的清單
+        loadList();
+
+    </script>
+
+</body>
+</html>
