@@ -27,6 +27,17 @@
             text-align: center;
             margin-bottom: 30px;
         }
+        
+        /* 新增分類標題樣式 */
+        .category-title {
+            font-weight: bold;
+            color: #007bff; /* 藍色 */
+            background-color: #eaf5ff;
+            padding: 8px;
+            margin: 15px 0 5px 0;
+            border-left: 5px solid #007bff;
+            font-size: 1.1em;
+        }
 
         /* 輸入框和按鈕樣式 */
         .input-group {
@@ -66,11 +77,10 @@
         #packingList li {
             display: flex;
             align-items: center;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            font-size: 18px;
+            cursor: default; /* 避免整個 li 顯示可點擊手勢 */
+            font-size: 16px;
         }
 
         #packingList li:last-child {
@@ -86,9 +96,26 @@
         }
 
         /* 完成項目樣式 (刪除線) */
-        .completed span {
+        .completed .item-text {
             text-decoration: line-through;
             color: #888;
+        }
+        .completed .note {
+             color: #bbb;
+        }
+        
+        /* 備註文字樣式 */
+        .note {
+            font-size: 0.85em;
+            color: #888;
+            margin-left: auto; /* 推到最右邊 */
+            white-space: nowrap; /* 避免備註換行 */
+            padding-left: 10px;
+        }
+        
+        /* 項目文字樣式 */
+        .item-text {
+            flex-grow: 1; /* 讓文字佔據中間空間 */
         }
 
         /* 底部按鈕 */
@@ -125,8 +152,8 @@
 <body>
 
     <div class="container">
-        <h1>✈️ 行李清單整理 📝</h1>
-
+        <h1>✈️ 我的專屬行李清單 📝</h1>
+        
         <div class="input-group">
             <input type="text" id="newItem" placeholder="輸入要新增的行李項目...">
             <button id="addItemBtn">新增</button>
@@ -148,48 +175,127 @@
         const clearAllBtn = document.getElementById('clearAllBtn');
         const clearCompletedBtn = document.getElementById('clearCompletedBtn');
         
-        // 預設清單 (首次載入時使用)
+        // **預設清單 (使用您提供的詳細清單)**
+        // 註: type: 'category' 的項目不具有勾選功能
         const defaultItems = [
-            { text: '護照/身份證件', completed: false },
-            { text: '手機及充電線', completed: false },
-            { text: '轉換插頭', completed: false },
-            { text: '換洗衣物', completed: false },
-            { text: '洗漱用品', completed: false },
-            { text: '藥品與急救包', completed: false },
-            { text: '錢包與信用卡', completed: false }
+            { type: 'category', text: '✅【建議放隨身行李】', completed: false },
+            { text: '護照、身分證', note: '出入境必備，隨身', completed: false },
+            { text: '電子機票（PDF）', note: '在雲端上', completed: false },
+            { text: '住宿確認資料（PDF）', note: '在雲端上', completed: false },
+            { text: '現金、信用卡、錢包、悠遊卡', note: '隨身保管安全', completed: false },
+            { text: '手機、充電線、充電頭、行動電源', note: '行動電源禁止托運！', completed: false },
+            { text: 'eSIM QRcode', note: '在雲端上', completed: false },
+            { text: '證件與護照照片', note: '緊急備用，超重要', completed: false },
+            { text: '相機（數位或底片）', note: '易碎物品，建議隨身', completed: false },
+            { text: '隱形眼鏡（含備用）', note: '建議隨身攜帶備用', completed: false },
+            { text: '個人藥物（腸胃藥、止痛藥、暈車藥等）', note: '必備藥物應放隨身', completed: false },
+            { text: '眼藥水、防蚊液', note: '液體類 ≤100ml 可放隨身', completed: false },
+            { text: '口罩', note: '飛機與人多場所建議配戴', completed: false },
+            { text: '鑰匙', note: '不建議托運，以免行李延誤', completed: false },
+            { text: '電子行李秤', note: '可隨身或放托運', completed: false },
+            { text: '墨鏡、袖套', note: '白天外出需用', completed: false },
+            { text: '電動刮鬍刀', note: '', completed: false },
+            
+            { type: 'category', text: '✅【建議放托運行李】- 有電池都盡量不要放', completed: false },
+            { text: '換洗衣物（上衣、褲子、睡衣）', note: '可根據行程天數打包', completed: false },
+            { text: '內褲、襪子', note: '多帶幾套', completed: false },
+            { text: '鞋子（額外的）', note: '較重建議托運', completed: false },
+            { text: '保養品、化妝品（非基本用品）', note: '液體 >100ml 一律托運', completed: false },
+            { text: '髒衣袋、塑膠袋', note: '可摺疊打包進托運行李', completed: false },
+            { text: '輕便雨衣/小型摺疊傘', note: '視行李空間，輕便的可隨身備用', completed: false },
         ];
+        
+        // ----------------------------------------------------
+        // 核心邏輯：載入、儲存與渲染
+        // ----------------------------------------------------
 
         // 1. 從 localStorage 載入清單
         function loadList() {
-            // 嘗試從本地儲存中獲取資料
-            const storedList = localStorage.getItem('packingList');
+            const storedItems = localStorage.getItem('packingList');
+            let itemsToRender = [];
+
+            if (storedItems) {
+                // 如果本地有儲存，則將預設的分類標題和儲存的項目合併
+                const listItems = JSON.parse(storedItems);
+                let itemIndex = 0;
+                
+                defaultItems.forEach(defaultItem => {
+                    if (defaultItem.type === 'category') {
+                        itemsToRender.push(defaultItem); // 加入分類標題
+                    } else if (itemIndex < listItems.length && listItems[itemIndex].text === defaultItem.text) {
+                        // 如果項目名稱相同，使用儲存的狀態 (保持原本的順序)
+                        itemsToRender.push(listItems[itemIndex]);
+                        itemIndex++;
+                    } else {
+                        // 如果是新新增的項目，則加入 (這裡處理不嚴謹，主要依靠 saveList 的邏輯)
+                        // 為了簡化，如果找不到對應項目，就先跳過，渲染時會加入所有儲存的項目。
+                    }
+                });
+                
+                // 最後加入所有儲存的項目（包含使用者新增的項目）
+                itemsToRender = itemsToRender.filter(item => item.type === 'category').concat(listItems);
+                
+            } else {
+                // 首次載入，使用預設清單
+                itemsToRender = defaultItems;
+            }
+
+            // 確保所有儲存的自訂項目也被包含
+            const customItems = itemsToRender.filter(item => item.type !== 'category');
             
-            // 如果本地有儲存的資料，就解析它；否則使用預設清單
-            let items = storedList ? JSON.parse(storedList) : defaultItems;
+            // 為了簡化邏輯和確保自訂項目被加入，我們用一個更簡單的結構：
+            let finalItems = [];
+            const savedItemsMap = new Map(customItems.map(item => [item.text, item]));
+
+            defaultItems.forEach(defaultItem => {
+                if (defaultItem.type === 'category') {
+                    finalItems.push(defaultItem);
+                } else if (savedItemsMap.has(defaultItem.text)) {
+                    finalItems.push(savedItemsMap.get(defaultItem.text));
+                    savedItemsMap.delete(defaultItem.text); // 移除已處理的預設項目
+                }
+            });
             
-            // 渲染清單到網頁上
-            renderList(items);
+            // 將所有未處理的 (使用者新增的) 項目放在清單末尾
+            finalItems = finalItems.concat(Array.from(savedItemsMap.values()));
+
+
+            renderList(finalItems);
         }
 
         // 2. 儲存清單到 localStorage
         function saveList() {
-            // 獲取當前網頁上的所有清單項目
-            const currentItems = Array.from(list.children).map(li => {
-                const checkbox = li.querySelector('input[type="checkbox"]');
-                const text = li.querySelector('span').textContent;
-                return {
-                    text: text,
-                    completed: checkbox.checked
-                };
-            });
-            // 儲存為 JSON 格式的字串
+            // 只儲存非分類的實際清單項目 (用於持久化)
+            const currentItems = Array.from(list.children)
+                .filter(li => !li.classList.contains('category-title')) // 過濾掉分類標題
+                .map(li => {
+                    const checkbox = li.querySelector('input[type="checkbox"]');
+                    const text = li.querySelector('.item-text').textContent;
+                    const note = li.querySelector('.note') ? li.querySelector('.note').textContent : '';
+                    return {
+                        text: text,
+                        note: note,
+                        completed: checkbox.checked
+                    };
+                });
             localStorage.setItem('packingList', JSON.stringify(currentItems));
         }
 
         // 3. 渲染（繪製）清單到網頁
         function renderList(items) {
             list.innerHTML = ''; // 清空現有的清單
+            
             items.forEach(item => {
+                // 處理分類標題
+                if (item.type === 'category') {
+                    const h3 = document.createElement('h3');
+                    h3.textContent = item.text;
+                    h3.classList.add('category-title');
+                    list.appendChild(h3);
+                    return; // 跳過一般清單項目的處理
+                }
+                
+                // 處理一般清單項目
                 const li = document.createElement('li');
                 
                 // 創建勾選框
@@ -200,6 +306,12 @@
                 // 創建文字
                 const textSpan = document.createElement('span');
                 textSpan.textContent = item.text;
+                textSpan.classList.add('item-text');
+                
+                // 創建備註
+                const noteSpan = document.createElement('span');
+                noteSpan.textContent = item.note || ''; // 如果沒有備註則為空
+                noteSpan.classList.add('note');
                 
                 // 根據狀態設定刪除線樣式
                 if (item.completed) {
@@ -209,6 +321,7 @@
                 // 組合元素
                 li.appendChild(checkbox);
                 li.appendChild(textSpan);
+                li.appendChild(noteSpan);
                 list.appendChild(li);
 
                 // **事件監聽：當勾選狀態改變時，儲存清單**
@@ -231,16 +344,20 @@
                 return;
             }
 
-            // 獲取當前清單，新增新項目
-            const currentItems = Array.from(list.children).map(li => ({
-                text: li.querySelector('span').textContent,
-                completed: li.querySelector('input[type="checkbox"]').checked
-            }));
-            currentItems.push({ text: text, completed: false });
+            // 取得當前儲存的項目 (排除分類標題)
+            const storedItems = JSON.parse(localStorage.getItem('packingList')) || defaultItems.filter(item => item.type !== 'category');
+            
+            // 新增新項目，預設為未完成且無備註
+            storedItems.push({ 
+                text: text, 
+                note: '（自訂新增項目）', 
+                completed: false 
+            });
             
             // 重新渲染並儲存
-            renderList(currentItems);
-            saveList();
+            // 這裡必須重新載入，才能確保分類標題跟著出現
+            localStorage.setItem('packingList', JSON.stringify(storedItems));
+            loadList();
             
             newItemInput.value = ''; // 清空輸入框
             newItemInput.focus();
@@ -256,7 +373,7 @@
         
         // 清除所有項目 (重置為預設清單)
         clearAllBtn.addEventListener('click', () => {
-             if (confirm("確定要清除所有清單，並重置為預設項目嗎？")) {
+             if (confirm("確定要清除所有勾選狀態、自訂新增的項目，並重置為預設清單嗎？")) {
                 localStorage.removeItem('packingList'); // 刪除本地儲存
                 loadList(); // 重新載入預設清單
             }
@@ -264,17 +381,18 @@
         
         // 清除已完成項目
         clearCompletedBtn.addEventListener('click', () => {
-            if (confirm("確定要從清單中移除所有已勾選的項目嗎？")) {
-                // 過濾掉已完成的項目
+            if (confirm("確定要從清單中移除所有已勾選的項目嗎？（未完成的項目會保留）")) {
+                // 過濾掉已完成和分類標題的項目
                 const uncompletedItems = Array.from(list.children)
-                    .filter(li => !li.classList.contains('completed'))
+                    .filter(li => !li.classList.contains('completed') && !li.classList.contains('category-title'))
                     .map(li => ({
-                        text: li.querySelector('span').textContent,
-                        completed: false // 未完成
+                        text: li.querySelector('.item-text').textContent,
+                        note: li.querySelector('.note').textContent,
+                        completed: false 
                     }));
 
-                renderList(uncompletedItems);
-                saveList();
+                localStorage.setItem('packingList', JSON.stringify(uncompletedItems));
+                loadList();
             }
         });
 
